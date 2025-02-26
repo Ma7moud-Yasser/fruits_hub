@@ -19,6 +19,7 @@ class FruitHub extends StatelessWidget {
       home: SplashScreen(),
       onGenerateRoute: OnGeneraRouteGenerator.generateRoute,
       initialRoute: Routes.splash,
+      debugShowCheckedModeBanner: false,
     );
   }
 }

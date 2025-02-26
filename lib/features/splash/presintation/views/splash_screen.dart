@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:fruits_hub/core/styles/assets_manager.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
@@ -9,8 +11,13 @@ class SplashScreen extends StatelessWidget {
       body: SafeArea(
         child: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: const [Text('Loading...')],
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SvgPicture.asset(IconsAssets.splashTop),
+              Center(child: SvgPicture.asset(IconsAssets.splashIcon)),
+              SvgPicture.asset(IconsAssets.splashBottom),
+            ],
           ),
         ),
       ),

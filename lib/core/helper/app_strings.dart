@@ -8,4 +8,5 @@ class AppStrings {
   static const String onBoardingTitle2 = 'ابحث وتسوق';
   static const String onBoardingSubTitle2 =
       'نقدم لك أفضل الفواكه المختارة بعناية. اطلع على التفاصيل والصور والتقييمات لتتأكد من اختيار الفاكهة المثالية';
+  static const String skip = 'تخط';
 }

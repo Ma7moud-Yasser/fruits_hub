@@ -9,4 +9,5 @@ class AppStrings {
   static const String onBoardingSubTitle2 =
       'نقدم لك أفضل الفواكه المختارة بعناية. اطلع على التفاصيل والصور والتقييمات لتتأكد من اختيار الفاكهة المثالية';
   static const String skip = 'تخط';
+  static const String startNow = 'ابدأ الان';
 }

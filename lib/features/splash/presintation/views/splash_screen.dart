@@ -11,12 +11,12 @@ class SplashScreen extends StatelessWidget {
       body: SafeArea(
         child: Center(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              SvgPicture.asset(IconsAssets.splashTop),
+              Row(children: [SvgPicture.asset(IconsAssets.splashTop)]),
               Center(child: SvgPicture.asset(IconsAssets.splashIcon)),
-              SvgPicture.asset(IconsAssets.splashBottom),
+              SvgPicture.asset(IconsAssets.splashBottom, fit: BoxFit.fill),
             ],
           ),
         ),

@@ -14,7 +14,7 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: SizeManager.getSize(context).width,
-      height: SizeManager.getSize(context).height * 0.06,
+      height: SizeManager.getSize(context).height * 0.065,
       child: TextButton(
         onPressed: onPressed,
         style: TextButton.styleFrom(

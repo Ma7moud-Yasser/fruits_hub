@@ -67,10 +67,10 @@ class OnBoardingPageView extends StatelessWidget {
         ),
         SizedBoxManager.height(context, 30),
         Padding(
-          padding: PaddingManager.symmetric(context: context),
+          padding: PaddingManager.symmetric(context: context, vertical: 0),
           child: CustomButton(onPressed: () {}, text: AppStrings.startNow),
         ),
-        SizedBoxManager.height(context, 30),
+        SizedBoxManager.height(context, 43),
       ],
     );
   }

@@ -9,8 +9,34 @@ import 'package:fruits_hub/core/styles/sized_box_manager.dart';
 import 'package:fruits_hub/core/styles/styles_manager.dart';
 import 'package:fruits_hub/features/on_boarding/presintaion/views/widgets/custom_on_boarding_widget.dart';
 
-class OnBoardingPageView extends StatelessWidget {
+class OnBoardingPageView extends StatefulWidget {
   const OnBoardingPageView({super.key});
+
+  @override
+  State<OnBoardingPageView> createState() => _OnBoardingPageViewState();
+}
+
+class _OnBoardingPageViewState extends State<OnBoardingPageView> {
+  late PageController pageController;
+
+  var currentPage = 0;
+  @override
+  void initState() {
+    pageController = PageController();
+
+    pageController.addListener(() {
+      setState(() {
+        currentPage = pageController.page!.round();
+      });
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    pageController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +44,10 @@ class OnBoardingPageView extends StatelessWidget {
       children: [
         Expanded(
           child: PageView(
+            controller: pageController,
             children: [
               CustomOnBoardingWidget(
+                isSkipVisible: true,
                 title: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -46,7 +74,9 @@ class OnBoardingPageView extends StatelessWidget {
                 backgroundImage: IconsAssets.onBoardingBG1,
                 image: IconsAssets.onBoarding1,
               ),
+
               CustomOnBoardingWidget(
+                isSkipVisible: false,
                 title: Text(
                   AppStrings.onBoardingTitle2,
                   style: StyleManager.textStyle24(context),
@@ -61,14 +91,23 @@ class OnBoardingPageView extends StatelessWidget {
         DotsIndicator(
           dotsCount: 2,
           decorator: DotsDecorator(
-            color: AppColor.primary,
-            activeColor: AppColor.primary.withOpacity(0.5),
+            activeColor: AppColor.primary,
+            color:
+                currentPage == 1
+                    ? AppColor.primary
+                    : AppColor.primary.withOpacity(0.5),
           ),
         ),
         SizedBoxManager.height(context, 30),
-        Padding(
-          padding: PaddingManager.symmetric(context: context, vertical: 0),
-          child: CustomButton(onPressed: () {}, text: AppStrings.startNow),
+        Visibility(
+          maintainAnimation: true,
+          maintainSize: true,
+          maintainState: true,
+          visible: currentPage == 1,
+          child: Padding(
+            padding: PaddingManager.symmetric(context: context, vertical: 0),
+            child: CustomButton(onPressed: () {}, text: AppStrings.startNow),
+          ),
         ),
         SizedBoxManager.height(context, 43),
       ],

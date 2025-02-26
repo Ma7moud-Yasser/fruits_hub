@@ -12,12 +12,14 @@ class CustomOnBoardingWidget extends StatelessWidget {
     required this.subTitle,
     required this.backgroundImage,
     required this.image,
+    required this.isSkipVisible,
   });
 
   final Widget title;
   final String subTitle;
   final String backgroundImage;
   final String image;
+  final bool isSkipVisible;
 
   @override
   Widget build(BuildContext context) {
@@ -37,17 +39,20 @@ class CustomOnBoardingWidget extends StatelessWidget {
                 left: 0,
                 child: SvgPicture.asset(image),
               ),
-              SafeArea(
-                child: Padding(
-                  padding: PaddingManager.symmetric(
-                    context: context,
-                    horizontal: 20,
-                  ),
-                  child: GestureDetector(
-                    onTap: () {},
-                    child: Text(
-                      AppStrings.skip,
-                      style: StyleManager.textStyle13(context),
+              Visibility(
+                visible: isSkipVisible,
+                child: SafeArea(
+                  child: Padding(
+                    padding: PaddingManager.symmetric(
+                      context: context,
+                      horizontal: 20,
+                    ),
+                    child: GestureDetector(
+                      onTap: () {},
+                      child: Text(
+                        AppStrings.skip,
+                        style: StyleManager.textStyle13(context),
+                      ),
                     ),
                   ),
                 ),

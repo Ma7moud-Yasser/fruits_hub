@@ -9,17 +9,26 @@ class PaddingManager {
     );
   }
 
-  static EdgeInsets iconTextForm(BuildContext context) {
-    return EdgeInsets.all(MediaQuery.of(context).size.width * 0.03);
-  }
-
-  static EdgeInsets rememberForgetPassword(BuildContext context) {
+  static EdgeInsets paddingHorizontal04Vertical015(BuildContext context) {
     return EdgeInsets.symmetric(
-      vertical: MediaQuery.of(context).size.height * 0.009,
+      horizontal: MediaQuery.of(context).size.width * 0.04,
+      vertical: MediaQuery.of(context).size.height * 0.015,
     );
   }
 
-  static EdgeInsets dontHaveAnAccount(BuildContext context) {
+  static EdgeInsets paddingHorizontal10(BuildContext context) {
+    return EdgeInsets.symmetric(
+      horizontal: MediaQuery.of(context).size.width * 0.1,
+    );
+  }
+
+  static EdgeInsets vertical05(BuildContext context) {
+    return EdgeInsets.symmetric(
+      vertical: MediaQuery.of(context).size.height * 0.05,
+    );
+  }
+
+  static EdgeInsets vertical03(BuildContext context) {
     return EdgeInsets.symmetric(
       vertical: MediaQuery.of(context).size.height * 0.03,
     );

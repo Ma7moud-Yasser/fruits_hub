@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fruits_hub/core/styles/color_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 abstract class StyleManager {
@@ -29,21 +30,21 @@ abstract class StyleManager {
     FontWeight fontWeight = FontWeight.w400,
     required BuildContext context,
   }) {
-    final colorScheme = Theme.of(context).colorScheme;
+    // final colorScheme = Theme.of(context).colorScheme;
     final double adjustedFontSize = responsiveFont(context, fontSize);
 
     Color color;
     if (fontSize < 16) {
-      color = colorScheme.outline;
+      color = AppColor.gray;
     } else if (fontSize <= 24) {
-      color = colorScheme.primary;
+      color = AppColor.back;
     } else {
-      color = colorScheme.primary;
+      color = AppColor.back;
     }
 
     return TextStyle(
       fontSize: adjustedFontSize,
-      fontFamily: GoogleFonts.poppins().fontFamily,
+      fontFamily: GoogleFonts.cairo().fontFamily,
       fontWeight: fontWeight,
       color: color,
     );
@@ -51,6 +52,8 @@ abstract class StyleManager {
 
   static TextStyle textStyle12(BuildContext context) =>
       getTextStyle(fontSize: 12, context: context);
+  static TextStyle textStyle13(BuildContext context) =>
+      getTextStyle(fontSize: 13, context: context);
   static TextStyle textStyle14(BuildContext context) =>
       getTextStyle(fontSize: 14, context: context);
   static TextStyle textStyle16(BuildContext context) =>
@@ -62,7 +65,7 @@ abstract class StyleManager {
   static TextStyle textStyle22(BuildContext context) =>
       getTextStyle(fontSize: 22, context: context);
   static TextStyle textStyle24(BuildContext context) =>
-      getTextStyle(fontSize: 24, context: context);
+      getTextStyle(fontSize: 24, context: context, fontWeight: FontWeight.w700);
   static TextStyle textStyle26(BuildContext context) =>
       getTextStyle(fontSize: 26, context: context);
   static TextStyle textStyle28(BuildContext context) =>

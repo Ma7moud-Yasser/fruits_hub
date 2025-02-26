@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fruits_hub/core/helper/app_strings.dart';
+import 'package:fruits_hub/core/styles/padding_manager.dart';
 import 'package:fruits_hub/core/styles/size_manager.dart';
+import 'package:fruits_hub/core/styles/styles_manager.dart';
 
 class CustomOnBoardingWidget extends StatelessWidget {
   const CustomOnBoardingWidget({
@@ -34,12 +37,32 @@ class CustomOnBoardingWidget extends StatelessWidget {
                 left: 0,
                 child: SvgPicture.asset(image),
               ),
-              SafeArea(child: Text('تخطي')),
+              SafeArea(
+                child: Padding(
+                  padding: PaddingManager.paddingHorizontal04Vertical015(
+                    context,
+                  ),
+                  child: GestureDetector(
+                    onTap: () {},
+                    child: Text(
+                      AppStrings.skip,
+                      style: StyleManager.textStyle13(context),
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
-        title,
-        Text(subTitle),
+        Padding(padding: PaddingManager.vertical05(context), child: title),
+        Padding(
+          padding: PaddingManager.paddingHorizontal10(context),
+          child: Text(
+            subTitle,
+            style: StyleManager.textStyle13(context),
+            textAlign: TextAlign.center,
+          ),
+        ),
       ],
     );
   }

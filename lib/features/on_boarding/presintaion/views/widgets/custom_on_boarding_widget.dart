@@ -39,8 +39,9 @@ class CustomOnBoardingWidget extends StatelessWidget {
               ),
               SafeArea(
                 child: Padding(
-                  padding: PaddingManager.paddingHorizontal04Vertical015(
-                    context,
+                  padding: PaddingManager.symmetric(
+                    context: context,
+                    horizontal: 20,
                   ),
                   child: GestureDetector(
                     onTap: () {},
@@ -54,9 +55,12 @@ class CustomOnBoardingWidget extends StatelessWidget {
             ],
           ),
         ),
-        Padding(padding: PaddingManager.vertical05(context), child: title),
         Padding(
-          padding: PaddingManager.paddingHorizontal10(context),
+          padding: PaddingManager.only(context: context, top: 60, bottom: 25),
+          child: title,
+        ),
+        Padding(
+          padding: PaddingManager.symmetric(context: context, horizontal: 40),
           child: Text(
             subTitle,
             style: StyleManager.textStyle13(context),

@@ -18,4 +18,6 @@ class IconsAssets {
   /// OnBoarding Screen
   static const String onBoarding1 = "$iconPath/onboarding1.svg";
   static const String onBoarding2 = "$iconPath/onboarding2.svg";
+  static const String onBoardingBG1 = "$iconPath/onboardingBG1.svg";
+  static const String onBoardingBG2 = "$iconPath/onboardingBG2.svg";
 }

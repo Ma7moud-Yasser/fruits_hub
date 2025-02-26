@@ -10,7 +10,12 @@ class ImagesAssets {
 }
 
 class IconsAssets {
+  /// Splash Screen
   static const String splashTop = "$iconPath/splash_top.svg";
   static const String splashIcon = "$iconPath/splash_icon.svg";
   static const String splashBottom = "$iconPath/splash_bottom.svg";
+
+  /// OnBoarding Screen
+  static const String onBoarding1 = "$iconPath/onboarding1.svg";
+  static const String onBoarding2 = "$iconPath/onboarding2.svg";
 }

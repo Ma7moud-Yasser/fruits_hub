@@ -13,24 +13,28 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    exCuteNavigation();
+    // exCuteNavigation();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    Locale currentLocale = Localizations.localeOf(context);
+    bool isArabic = currentLocale.languageCode == "ar";
     return Scaffold(
       body: SafeArea(
-        child: Center(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(children: [SvgPicture.asset(IconsAssets.splashTop)]),
-              Center(child: SvgPicture.asset(IconsAssets.splashIcon)),
-              SvgPicture.asset(IconsAssets.splashBottom, fit: BoxFit.fill),
-            ],
-          ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              mainAxisAlignment:
+                  isArabic ? MainAxisAlignment.end : MainAxisAlignment.start,
+              children: [SvgPicture.asset(IconsAssets.splashTop)],
+            ),
+            Center(child: SvgPicture.asset(IconsAssets.splashIcon)),
+            SvgPicture.asset(IconsAssets.splashBottom, fit: BoxFit.fill),
+          ],
         ),
       ),
     );

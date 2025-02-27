@@ -10,4 +10,8 @@ class AppStrings {
       'نقدم لك أفضل الفواكه المختارة بعناية. اطلع على التفاصيل والصور والتقييمات لتتأكد من اختيار الفاكهة المثالية';
   static const String skip = 'تخط';
   static const String startNow = 'ابدأ الان';
+  static const String signIn = "تسجيل دخول";
+  static const String signUp = "حساب جديد";
+  static const String email = "البريد الإلكتروني";
+  static const String password = "كلمة المرور";
 }

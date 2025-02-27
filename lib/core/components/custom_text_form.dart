@@ -83,10 +83,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
           borderRadius: BorderRadiusManager.small(context),
         ),
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            width: 1,
-            color: AppColor.gray.withOpacity(.5),
-          ),
+          borderSide: BorderSide(width: 1, color: AppColor.darkSilverSky),
           borderRadius: BorderRadiusManager.small(context),
         ),
         focusedBorder: OutlineInputBorder(

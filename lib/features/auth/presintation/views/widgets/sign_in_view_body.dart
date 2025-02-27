@@ -48,7 +48,7 @@ class SignInViewBody extends StatelessWidget {
               SizedBoxManager.height(context, 33),
               CustomButton(onPressed: () {}, text: AppStrings.signIn),
               SizedBoxManager.height(context, 33),
-              HaveOrNotHaveAccount(isSignIn: false, onTap: () {}),
+              HaveOrNotHaveAccount(isSignIn: true, onTap: () {}),
               SizedBoxManager.height(context, 33),
               const ORDivider(),
               SocialAuthButton(

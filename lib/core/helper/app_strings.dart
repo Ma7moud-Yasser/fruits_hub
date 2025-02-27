@@ -14,4 +14,5 @@ class AppStrings {
   static const String signUp = "حساب جديد";
   static const String email = "البريد الإلكتروني";
   static const String password = "كلمة المرور";
+  static const String forgotPassword = "نسيت كلمة المرور؟";
 }

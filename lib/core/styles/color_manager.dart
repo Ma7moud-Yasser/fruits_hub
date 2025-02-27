@@ -6,5 +6,6 @@ class AppColor {
   static const back = Colors.black;
   static const important = Color(0xffEB5757);
   static const gray = Color(0xff767F7D);
+  static const silverSky = Color(0xffE6E9EA);
   static const white = Colors.white;
 }

@@ -50,16 +50,26 @@ abstract class StyleManager {
     );
   }
 
-  static TextStyle textStyle12(BuildContext context) =>
-      getTextStyle(fontSize: 12, context: context);
-  static TextStyle textStyle13(BuildContext context) =>
-      getTextStyle(fontSize: 13, context: context);
-  static TextStyle textStyle14(BuildContext context) =>
-      getTextStyle(fontSize: 14, context: context);
-  static TextStyle textStyle16(BuildContext context) =>
-      getTextStyle(fontSize: 16, context: context);
-  static TextStyle textStyle18(BuildContext context) =>
-      getTextStyle(fontSize: 18, context: context);
+  static TextStyle textStyle12(
+    BuildContext context, [
+    FontWeight fontWeight = FontWeight.w400,
+  ]) => getTextStyle(fontSize: 12, context: context, fontWeight: fontWeight);
+  static TextStyle textStyle13(
+    BuildContext context, [
+    FontWeight fontWeight = FontWeight.w400,
+  ]) => getTextStyle(fontSize: 13, context: context, fontWeight: fontWeight);
+  static TextStyle textStyle14(
+    BuildContext context, [
+    FontWeight fontWeight = FontWeight.w400,
+  ]) => getTextStyle(fontSize: 14, context: context, fontWeight: fontWeight);
+  static TextStyle textStyle16(
+    BuildContext context, [
+    FontWeight fontWeight = FontWeight.w400,
+  ]) => getTextStyle(fontSize: 16, context: context, fontWeight: fontWeight);
+  static TextStyle textStyle18(
+    BuildContext context, [
+    FontWeight fontWeight = FontWeight.w400,
+  ]) => getTextStyle(fontSize: 18, context: context, fontWeight: fontWeight);
   static TextStyle textStyle20(
     BuildContext context, [
     FontWeight fontWeight = FontWeight.w400,

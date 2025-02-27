@@ -20,4 +20,9 @@ class IconsAssets {
   static const String onBoarding2 = "$iconPath/onboarding2.svg";
   static const String onBoardingBG1 = "$iconPath/onboardingBG1.svg";
   static const String onBoardingBG2 = "$iconPath/onboardingBG2.svg";
+
+  /// Auth Screen
+  static const String googleIcon = "$iconPath/google_icon.svg";
+  static const String appleIcon = "$iconPath/apple_icon.svg";
+  static const String facebookIcon = "$iconPath/facebook_icon.svg";
 }

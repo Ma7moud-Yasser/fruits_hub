@@ -15,4 +15,11 @@ class AppStrings {
   static const String email = "البريد الإلكتروني";
   static const String password = "كلمة المرور";
   static const String forgotPassword = "نسيت كلمة المرور؟";
+  static const String dontHaveAccount = "لا تمتلك حساب؟";
+  static const String createAccount = "قم بإنشاء حساب";
+  static const String or = "أو";
+  static const String alreadyHaveAccount = "تمتلك حساب بالفعل؟";
+  static const String signInWithGoogle = "تسجيل بواسطة جوجل";
+  static const String signInWithApple = "تسجيل بواسطة أبل";
+  static const String signInWithFacebook = "تسجيل بواسطة فيسبوك";
 }

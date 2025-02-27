@@ -44,7 +44,7 @@ abstract class StyleManager {
 
     return TextStyle(
       fontSize: adjustedFontSize,
-      fontFamily: GoogleFonts.cairo().fontFamily,
+      fontFamily: GoogleFonts.cairo(fontWeight: fontWeight).fontFamily,
       fontWeight: fontWeight,
       color: color,
     );
@@ -65,7 +65,7 @@ abstract class StyleManager {
   static TextStyle textStyle22(BuildContext context) =>
       getTextStyle(fontSize: 22, context: context);
   static TextStyle textStyle24(BuildContext context) =>
-      getTextStyle(fontSize: 24, context: context, fontWeight: FontWeight.w700);
+      getTextStyle(fontSize: 24, context: context, fontWeight: FontWeight.bold);
   static TextStyle textStyle26(BuildContext context) =>
       getTextStyle(fontSize: 26, context: context);
   static TextStyle textStyle28(BuildContext context) =>

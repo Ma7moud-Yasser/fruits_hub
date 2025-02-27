@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fruits_hub/core/helper/app_keys.dart';
 import 'package:fruits_hub/core/helper/app_strings.dart';
+import 'package:fruits_hub/core/helper/on_generate_routes.dart';
+import 'package:fruits_hub/core/services/shared_preferences_singleton.dart';
 import 'package:fruits_hub/core/styles/padding_manager.dart';
 import 'package:fruits_hub/core/styles/size_manager.dart';
 import 'package:fruits_hub/core/styles/styles_manager.dart';
@@ -48,7 +51,13 @@ class CustomOnBoardingWidget extends StatelessWidget {
                       horizontal: 20,
                     ),
                     child: GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        SharedPrefs.setBool(AppKeys.isOnBoardingViewSeen, true);
+                        Navigator.pushReplacementNamed(
+                          context,
+                          Routes.signInScreen,
+                        );
+                      },
                       child: Text(
                         AppStrings.skip,
                         style: StyleManager.textStyle13(context),

@@ -1,7 +1,10 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:fruits_hub/core/components/custom_button.dart';
+import 'package:fruits_hub/core/helper/app_keys.dart';
 import 'package:fruits_hub/core/helper/app_strings.dart';
+import 'package:fruits_hub/core/helper/on_generate_routes.dart';
+import 'package:fruits_hub/core/services/shared_preferences_singleton.dart';
 import 'package:fruits_hub/core/styles/assets_manager.dart';
 import 'package:fruits_hub/core/styles/color_manager.dart';
 import 'package:fruits_hub/core/styles/padding_manager.dart';
@@ -106,7 +109,13 @@ class _OnBoardingPageViewState extends State<OnBoardingPageView> {
           visible: currentPage == 1,
           child: Padding(
             padding: PaddingManager.symmetric(context: context, vertical: 0),
-            child: CustomButton(onPressed: () {}, text: AppStrings.startNow),
+            child: CustomButton(
+              onPressed: () {
+                SharedPrefs.setBool(AppKeys.isOnBoardingViewSeen, true);
+                Navigator.pushReplacementNamed(context, Routes.signInScreen);
+              },
+              text: AppStrings.startNow,
+            ),
           ),
         ),
         SizedBoxManager.height(context, 43),

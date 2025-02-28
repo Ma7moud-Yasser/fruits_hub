@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fruits_hub/core/components/custom_button.dart';
 import 'package:fruits_hub/core/components/custom_text_form.dart';
 import 'package:fruits_hub/core/helper/app_strings.dart';
+import 'package:fruits_hub/core/helper/on_generate_routes.dart';
 import 'package:fruits_hub/core/styles/assets_manager.dart';
 import 'package:fruits_hub/core/styles/color_manager.dart';
 import 'package:fruits_hub/core/styles/padding_manager.dart';
@@ -48,7 +49,12 @@ class SignInViewBody extends StatelessWidget {
               SizedBoxManager.height(context, 33),
               CustomButton(onPressed: () {}, text: AppStrings.signIn),
               SizedBoxManager.height(context, 33),
-              HaveOrNotHaveAccount(isSignIn: true, onTap: () {}),
+              HaveOrNotHaveAccount(
+                isSignIn: true,
+                onTap: () {
+                  Navigator.pushNamed(context, Routes.signUpScreen);
+                },
+              ),
               SizedBoxManager.height(context, 33),
               const ORDivider(),
               SocialAuthButton(

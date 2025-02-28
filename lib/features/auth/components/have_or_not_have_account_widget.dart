@@ -25,7 +25,7 @@ class HaveOrNotHaveAccount extends StatelessWidget {
         GestureDetector(
           onTap: onTap,
           child: Text(
-            isSignIn ? AppStrings.createAccount : AppStrings.signIn,
+            isSignIn ? AppStrings.createNewAccount : AppStrings.signIn,
             style: StyleManager.textStyle16(
               context,
               FontWeight.w600,

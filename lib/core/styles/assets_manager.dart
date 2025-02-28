@@ -25,4 +25,6 @@ class IconsAssets {
   static const String googleIcon = "$iconPath/google_icon.svg";
   static const String appleIcon = "$iconPath/apple_icon.svg";
   static const String facebookIcon = "$iconPath/facebook_icon.svg";
+  static const String checkBoxEmpty = "$iconPath/check_box_empty.svg";
+  static const String checkBoxFill = "$iconPath/check_box_fill.svg";
 }

@@ -27,7 +27,7 @@ class SignUpScreenBody extends StatelessWidget {
               TermsAndConditionsWidget(),
               SizedBoxManager.height(context, 30),
               CustomButton(onPressed: () {}, text: AppStrings.createAccount),
-              SizedBoxManager.height(context, 30),
+              SizedBoxManager.height(context, 26),
               HaveOrNotHaveAccount(
                 isSignIn: false,
                 onTap: () {

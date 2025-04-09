@@ -13,6 +13,8 @@ class SignUpCubit extends Cubit<SignUpState> {
   static SignUpCubit get(context) => BlocProvider.of(context);
   final AuthRepo authRepo;
 
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  bool isPasswordVisible = true;
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -29,6 +31,11 @@ class SignUpCubit extends Cubit<SignUpState> {
       (failure) => emit(SignUpErrorState(message: failure.message)),
       (userEntity) => emit(SignUpSuccessState(userEntity: userEntity)),
     );
+  }
+
+  void togglePasswordVisibility() {
+    isPasswordVisible = !isPasswordVisible;
+    emit(SignUpTogglePasswordVisibilityState());
   }
 
   @override

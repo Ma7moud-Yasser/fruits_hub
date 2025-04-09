@@ -9,11 +9,13 @@ import 'package:fruits_hub/core/utils/validation_manager.dart';
 class PasswordValidationWidget extends StatefulWidget {
   bool allConditionsMet;
   final TextEditingController passwordController;
+  bool isPasswordVisible;
 
   PasswordValidationWidget({
     super.key,
     required this.allConditionsMet,
     required this.passwordController,
+    this.isPasswordVisible = true,
   });
 
   @override
@@ -29,17 +31,18 @@ class _PasswordValidationWidgetState extends State<PasswordValidationWidget> {
 
   @override
   Widget build(BuildContext context) {
-    // التحقق من الشروط بناءً على كلمة المرور من الـ controller
     final checklist = ValidationManager.validatePasswordChecklist(
       widget.passwordController.text,
     );
 
-    // التحقق إذا كانت جميع الشروط متحققة
     widget.allConditionsMet = checklist.values.every((isValid) => isValid);
 
     return Column(
       children: [
         CustomTextFormField(
+          obscureText: widget.isPasswordVisible,
+          keyboardType: TextInputType.visiblePassword,
+
           hintText: AppStrings.password,
           controller: widget.passwordController, // تمرير الـ controller
           onChanged: (value) {

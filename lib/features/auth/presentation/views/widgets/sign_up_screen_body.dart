@@ -60,6 +60,7 @@ class _SignUpScreenBodyState extends State<SignUpScreenBody> {
                   SizedBoxManager.height(context, 16),
                   PasswordValidationWidget(
                     allConditionsMet: allConditionsMet,
+                    isPasswordVisible: signUpCubit.isPasswordVisible,
                     passwordController: signUpCubit.passwordController,
                   ),
                   SizedBoxManager.height(context, 16),

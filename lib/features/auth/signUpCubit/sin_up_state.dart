@@ -16,3 +16,5 @@ final class SignUpErrorState extends SignUpState {
   final String message;
   SignUpErrorState({required this.message});
 }
+
+final class SignUpTogglePasswordVisibilityState extends SignUpState {}

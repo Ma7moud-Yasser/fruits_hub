@@ -8,8 +8,8 @@ import 'package:fruits_hub/core/styles/color_manager.dart';
 import 'package:fruits_hub/core/styles/padding_manager.dart';
 import 'package:fruits_hub/core/styles/sized_box_manager.dart';
 import 'package:fruits_hub/core/styles/styles_manager.dart';
-import 'package:fruits_hub/features/auth/components/have_or_not_have_account_widget.dart';
-import 'package:fruits_hub/features/auth/components/or_divider.dart';
+import 'package:fruits_hub/features/auth/presintation/components/have_or_not_have_account_widget.dart';
+import 'package:fruits_hub/features/auth/presintation/components/or_divider.dart';
 import 'package:fruits_hub/features/auth/presintation/views/widgets/social_auth_button.dart';
 
 class SignInViewBody extends StatelessWidget {

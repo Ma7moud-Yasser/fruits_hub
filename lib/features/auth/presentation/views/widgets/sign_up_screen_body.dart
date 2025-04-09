@@ -21,12 +21,16 @@ class SignUpScreenBody extends StatefulWidget {
 class _SignUpScreenBodyState extends State<SignUpScreenBody> {
   final _formKey = GlobalKey<FormState>();
   AutovalidateMode _autovalidateMode = AutovalidateMode.disabled;
-  String? email, password, name;
+
+  // إضافة Controllers لكل من name, email, password
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     final checklist = ValidationManager.validatePasswordChecklist(
-      password ?? '',
+      _passwordController.text, // استخدام الـ controller لقراءة كلمة المرور
     );
 
     bool allConditionsMet = checklist.values.every((isValid) => isValid);
@@ -42,24 +46,24 @@ class _SignUpScreenBodyState extends State<SignUpScreenBody> {
               child: Column(
                 children: [
                   CustomTextFormField(
+                    controller: _nameController,
                     hintText: AppStrings.fullName,
-                    onSaved: (value) {
-                      name = value;
-                    },
+
                     validator: (value) => ValidationManager.validateName(value),
                   ),
                   SizedBoxManager.height(context, 16),
                   CustomTextFormField(
+                    controller: _emailController,
                     hintText: AppStrings.email,
-                    onSaved: (value) {
-                      email = value;
-                    },
+
                     validator:
                         (value) => ValidationManager.validateEmail(value),
                   ),
                   SizedBoxManager.height(context, 16),
-                  PasswordValidationWidget(allConditionsMet: allConditionsMet),
-
+                  PasswordValidationWidget(
+                    allConditionsMet: allConditionsMet,
+                    passwordController: _passwordController,
+                  ),
                   SizedBoxManager.height(context, 16),
                   TermsAndConditionsWidget(),
                   SizedBoxManager.height(context, 30),
@@ -77,9 +81,9 @@ class _SignUpScreenBodyState extends State<SignUpScreenBody> {
                     if (_formKey.currentState!.validate()) {
                       _formKey.currentState!.save();
                       context.read<SignUpCubit>().signUp(
-                        email!,
-                        password!,
-                        name!,
+                        _emailController.text,
+                        _passwordController.text,
+                        _nameController.text,
                       );
                     } else {
                       setState(() {
@@ -106,5 +110,13 @@ class _SignUpScreenBodyState extends State<SignUpScreenBody> {
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
   }
 }

@@ -8,12 +8,12 @@ import 'package:fruits_hub/core/utils/validation_manager.dart';
 // ignore: must_be_immutable
 class PasswordValidationWidget extends StatefulWidget {
   bool allConditionsMet;
-  String? password;
+  final TextEditingController passwordController;
 
   PasswordValidationWidget({
     super.key,
     required this.allConditionsMet,
-    this.password,
+    required this.passwordController,
   });
 
   @override
@@ -22,21 +22,16 @@ class PasswordValidationWidget extends StatefulWidget {
 }
 
 class _PasswordValidationWidgetState extends State<PasswordValidationWidget> {
-  // إنشاء controller للتأكد من التعامل مع التحديثات بشكل مستمر
-  final TextEditingController _passwordController = TextEditingController();
-
   @override
   void initState() {
     super.initState();
-    _passwordController.text =
-        widget.password ?? ''; // تحديد النص الأولي إذا كان موجودًا
   }
 
   @override
   Widget build(BuildContext context) {
-    // التحقق من الشروط بناءً على كلمة المرور
+    // التحقق من الشروط بناءً على كلمة المرور من الـ controller
     final checklist = ValidationManager.validatePasswordChecklist(
-      _passwordController.text,
+      widget.passwordController.text,
     );
 
     // التحقق إذا كانت جميع الشروط متحققة
@@ -46,14 +41,14 @@ class _PasswordValidationWidgetState extends State<PasswordValidationWidget> {
       children: [
         CustomTextFormField(
           hintText: AppStrings.password,
-          controller: _passwordController,
+          controller: widget.passwordController, // تمرير الـ controller
           onChanged: (value) {
             setState(() {
-              widget.password = value;
+              // هنا لا داعي لأن نحدث الـ password مباشرة لأنه يتم تحديثه عبر الـ controller
             });
           },
           onSaved: (value) {
-            widget.password = value;
+            // يمكن حفظ الـ value هنا إذا لزم الأمر
           },
           suffixIconWidget:
               widget.allConditionsMet
@@ -64,8 +59,7 @@ class _PasswordValidationWidgetState extends State<PasswordValidationWidget> {
                   )
                   : null, // عرض الأيقونة فقط إذا كانت الشروط متحققة
         ),
-        if (widget.password != null &&
-            widget.password!.isNotEmpty &&
+        if (widget.passwordController.text.isNotEmpty &&
             !widget.allConditionsMet)
           ...checklist.entries.map(
             (entry) => Padding(
@@ -99,11 +93,5 @@ class _PasswordValidationWidgetState extends State<PasswordValidationWidget> {
           ),
       ],
     );
-  }
-
-  @override
-  void dispose() {
-    _passwordController.dispose();
-    super.dispose();
   }
 }

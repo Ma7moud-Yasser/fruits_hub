@@ -1,0 +1,30 @@
+import 'package:dartz/dartz.dart';
+import 'package:fruits_hub/core/entities/user_entity.dart';
+import 'package:fruits_hub/core/errors/custom_exception.dart';
+import 'package:fruits_hub/core/errors/failure.dart';
+import 'package:fruits_hub/core/services/firebase_service.dart';
+import 'package:fruits_hub/features/auth/data/models/user_model.dart';
+import 'package:fruits_hub/features/auth/domain/repo/auth_repo.dart';
+
+class AuthRepoImpl extends AuthRepo {
+  FirebaseAuthService firebaseAuthService;
+  AuthRepoImpl({required this.firebaseAuthService});
+  @override
+  Future<Either<Failure, UserEntity>> createUser({
+    required String email,
+    required String password,
+    required String name,
+  }) async {
+    try {
+      var user = await firebaseAuthService.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      return right(UserModel.fromJson(user));
+    } on CustomException catch (e) {
+      return left(ServerFailure(message: e.message));
+    } catch (e) {
+      return left(ServerFailure(message: "في مشكلة حصلت جرب كمان شويه"));
+    }
+  }
+}

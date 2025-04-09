@@ -24,14 +24,10 @@ class _SignUpScreenBodyState extends State<SignUpScreenBody> {
   final _formKey = GlobalKey<FormState>();
   AutovalidateMode _autovalidateMode = AutovalidateMode.disabled;
 
-  final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     final checklist = ValidationManager.validatePasswordChecklist(
-      _passwordController.text,
+      context.read<SignUpCubit>().passwordController.text,
     );
 
     bool allConditionsMet = checklist.values.every((isValid) => isValid);
@@ -47,14 +43,14 @@ class _SignUpScreenBodyState extends State<SignUpScreenBody> {
               child: Column(
                 children: [
                   CustomTextFormField(
-                    controller: _nameController,
+                    controller: context.read<SignUpCubit>().nameController,
                     hintText: AppStrings.fullName,
 
                     validator: (value) => ValidationManager.validateName(value),
                   ),
                   SizedBoxManager.height(context, 16),
                   CustomTextFormField(
-                    controller: _emailController,
+                    controller: context.read<SignUpCubit>().emailController,
                     hintText: AppStrings.email,
 
                     validator:
@@ -63,7 +59,8 @@ class _SignUpScreenBodyState extends State<SignUpScreenBody> {
                   SizedBoxManager.height(context, 16),
                   PasswordValidationWidget(
                     allConditionsMet: allConditionsMet,
-                    passwordController: _passwordController,
+                    passwordController:
+                        context.read<SignUpCubit>().passwordController,
                   ),
                   SizedBoxManager.height(context, 16),
                   TermsAndConditionsWidget(),
@@ -93,16 +90,13 @@ class _SignUpScreenBodyState extends State<SignUpScreenBody> {
                 }
               },
               builder: (context, state) {
+                final signUpCubit = SignUpCubit.get(context);
                 return CustomButton(
                   isLoading: state is SignUpLoadingState,
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       _formKey.currentState!.save();
-                      context.read<SignUpCubit>().signUp(
-                        _emailController.text,
-                        _passwordController.text,
-                        _nameController.text,
-                      );
+                      signUpCubit.signUp();
                     } else {
                       setState(() {
                         _autovalidateMode = AutovalidateMode.always;
@@ -128,13 +122,5 @@ class _SignUpScreenBodyState extends State<SignUpScreenBody> {
         ],
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    _nameController.dispose();
-    _emailController.dispose();
-    _passwordController.dispose();
-    super.dispose();
   }
 }

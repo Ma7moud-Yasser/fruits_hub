@@ -3,8 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_hub/core/components/custom_button.dart';
 import 'package:fruits_hub/core/components/custom_text_form.dart';
 import 'package:fruits_hub/core/helper/app_strings.dart';
+import 'package:fruits_hub/core/styles/color_manager.dart';
 import 'package:fruits_hub/core/styles/padding_manager.dart';
 import 'package:fruits_hub/core/styles/sized_box_manager.dart';
+import 'package:fruits_hub/core/styles/styles_manager.dart';
 import 'package:fruits_hub/core/utils/validation_manager.dart';
 import 'package:fruits_hub/features/auth/presentation/components/have_or_not_have_account_widget.dart';
 import 'package:fruits_hub/features/auth/presentation/views/widgets/PasswordValidationWidget.dart';
@@ -22,7 +24,6 @@ class _SignUpScreenBodyState extends State<SignUpScreenBody> {
   final _formKey = GlobalKey<FormState>();
   AutovalidateMode _autovalidateMode = AutovalidateMode.disabled;
 
-  // إضافة Controllers لكل من name, email, password
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -30,7 +31,7 @@ class _SignUpScreenBodyState extends State<SignUpScreenBody> {
   @override
   Widget build(BuildContext context) {
     final checklist = ValidationManager.validatePasswordChecklist(
-      _passwordController.text, // استخدام الـ controller لقراءة كلمة المرور
+      _passwordController.text,
     );
 
     bool allConditionsMet = checklist.values.every((isValid) => isValid);
@@ -73,7 +74,24 @@ class _SignUpScreenBodyState extends State<SignUpScreenBody> {
           ),
           SliverToBoxAdapter(
             child: BlocConsumer<SignUpCubit, SignUpState>(
-              listener: (context, state) {},
+              listener: (context, state) {
+                if (state is SignUpErrorState) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        state.message,
+                        style: StyleManager.textStyle14(
+                          context,
+                          FontWeight.bold,
+                        ).copyWith(color: AppColor.white),
+                      ),
+                      backgroundColor: AppColor.darkPrimary,
+                    ),
+                  );
+                } else if (state is SignUpSuccessState) {
+                  Navigator.pop(context);
+                }
+              },
               builder: (context, state) {
                 return CustomButton(
                   isLoading: state is SignUpLoadingState,

@@ -5,20 +5,20 @@ import 'package:meta/meta.dart';
 
 part 'sin_up_state.dart';
 
-class SinUpCubit extends Cubit<SinUpState> {
-  SinUpCubit(this.authRepo) : super(SinUpInitialState());
+class SignUpCubit extends Cubit<SignUpState> {
+  SignUpCubit(this.authRepo) : super(SignUpInitialState());
   final AuthRepo authRepo;
 
   Future<void> signUp(String email, String password, String name) async {
-    emit(SinUpLoadingState());
+    emit(SignUpLoadingState());
     final result = await authRepo.createUser(
       email: email,
       password: password,
       name: name,
     );
     result.fold(
-      (Failure) => emit(SinUpErrorState(message: Failure.message)),
-      (UserEntity) => emit(SinUpSuccessState(userEntity: UserEntity)),
+      (Failure) => emit(SignUpErrorState(message: Failure.message)),
+      (UserEntity) => emit(SignUpSuccessState(userEntity: UserEntity)),
     );
   }
 }

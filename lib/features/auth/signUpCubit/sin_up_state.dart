@@ -1,18 +1,18 @@
 part of 'sin_up_cubit.dart';
 
 @immutable
-sealed class SinUpState {}
+sealed class SignUpState {}
 
-final class SinUpInitialState extends SinUpState {}
+final class SignUpInitialState extends SignUpState {}
 
-final class SinUpLoadingState extends SinUpState {}
+final class SignUpLoadingState extends SignUpState {}
 
-final class SinUpSuccessState extends SinUpState {
+final class SignUpSuccessState extends SignUpState {
   final UserEntity userEntity;
-  SinUpSuccessState({required this.userEntity});
+  SignUpSuccessState({required this.userEntity});
 }
 
-final class SinUpErrorState extends SinUpState {
+final class SignUpErrorState extends SignUpState {
   final String message;
-  SinUpErrorState({required this.message});
+  SignUpErrorState({required this.message});
 }

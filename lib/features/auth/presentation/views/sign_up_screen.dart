@@ -13,7 +13,7 @@ class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => SinUpCubit(getIt<AuthRepo>()),
+      create: (context) => SignUpCubit(getIt<AuthRepo>()),
       child: Scaffold(
         appBar: customAppBar(context, title: AppStrings.signUp),
         body: SignUpScreenBody(),

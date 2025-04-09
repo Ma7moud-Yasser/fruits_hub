@@ -4,11 +4,18 @@ import 'package:fruits_hub/core/styles/color_manager.dart';
 import 'package:fruits_hub/core/styles/size_manager.dart';
 import 'package:fruits_hub/core/styles/styles_manager.dart';
 
+// ignore: must_be_immutable
 class CustomButton extends StatelessWidget {
-  const CustomButton({super.key, required this.onPressed, required this.text});
+  CustomButton({
+    super.key,
+    this.isLoading = false,
+    required this.onPressed,
+    required this.text,
+  });
 
   final void Function() onPressed;
   final String text;
+  bool isLoading;
 
   @override
   Widget build(BuildContext context) {
@@ -23,13 +30,16 @@ class CustomButton extends StatelessWidget {
             borderRadius: BorderRadiusManager.medium(context),
           ),
         ),
-        child: Text(
-          text,
-          style: StyleManager.textStyle16(
-            context,
-            FontWeight.w700,
-          ).copyWith(color: AppColor.white),
-        ),
+        child:
+            isLoading
+                ? const CircularProgressIndicator(color: AppColor.white)
+                : Text(
+                  text,
+                  style: StyleManager.textStyle16(
+                    context,
+                    FontWeight.w700,
+                  ).copyWith(color: AppColor.white),
+                ),
       ),
     );
   }

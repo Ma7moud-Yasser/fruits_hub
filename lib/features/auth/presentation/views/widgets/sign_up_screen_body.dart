@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_hub/core/components/custom_button.dart';
 import 'package:fruits_hub/core/components/custom_text_form.dart';
 import 'package:fruits_hub/core/helper/app_strings.dart';
@@ -6,6 +7,7 @@ import 'package:fruits_hub/core/styles/padding_manager.dart';
 import 'package:fruits_hub/core/styles/sized_box_manager.dart';
 import 'package:fruits_hub/features/auth/presentation/components/have_or_not_have_account_widget.dart';
 import 'package:fruits_hub/features/auth/presentation/views/widgets/terms_condition_widget.dart';
+import 'package:fruits_hub/features/auth/signUpCubit/sin_up_cubit.dart';
 
 class SignUpScreenBody extends StatelessWidget {
   const SignUpScreenBody({super.key});
@@ -26,7 +28,22 @@ class SignUpScreenBody extends StatelessWidget {
               SizedBoxManager.height(context, 16),
               TermsAndConditionsWidget(),
               SizedBoxManager.height(context, 30),
-              CustomButton(onPressed: () {}, text: AppStrings.createAccount),
+            ]),
+          ),
+          SliverToBoxAdapter(
+            child: BlocConsumer<SignUpCubit, SignUpState>(
+              listener: (context, state) {},
+              builder: (context, state) {
+                return CustomButton(
+                  isLoading: state is SignUpLoadingState,
+                  onPressed: () {},
+                  text: AppStrings.createAccount,
+                );
+              },
+            ),
+          ),
+          SliverList(
+            delegate: SliverChildListDelegate([
               SizedBoxManager.height(context, 26),
               HaveOrNotHaveAccount(
                 isSignIn: false,

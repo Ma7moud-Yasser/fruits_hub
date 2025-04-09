@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:fruits_hub/features/auth/presintation/views/sign_in_screen.dart';
-import 'package:fruits_hub/features/auth/presintation/views/sign_up_screen.dart';
+import 'package:fruits_hub/features/auth/presentation/views/sign_in_screen.dart';
+import 'package:fruits_hub/features/auth/presentation/views/sign_up_screen.dart';
 import 'package:fruits_hub/features/on_boarding/presintaion/views/on_boarding_screen.dart';
 import 'package:fruits_hub/features/splash/presintation/views/splash_screen.dart';
 

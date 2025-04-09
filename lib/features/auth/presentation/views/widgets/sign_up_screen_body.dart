@@ -26,8 +26,9 @@ class _SignUpScreenBodyState extends State<SignUpScreenBody> {
 
   @override
   Widget build(BuildContext context) {
+    final signUpCubit = SignUpCubit.get(context);
     final checklist = ValidationManager.validatePasswordChecklist(
-      context.read<SignUpCubit>().passwordController.text,
+      signUpCubit.passwordController.text,
     );
 
     bool allConditionsMet = checklist.values.every((isValid) => isValid);
@@ -43,14 +44,14 @@ class _SignUpScreenBodyState extends State<SignUpScreenBody> {
               child: Column(
                 children: [
                   CustomTextFormField(
-                    controller: context.read<SignUpCubit>().nameController,
+                    controller: signUpCubit.nameController,
                     hintText: AppStrings.fullName,
 
                     validator: (value) => ValidationManager.validateName(value),
                   ),
                   SizedBoxManager.height(context, 16),
                   CustomTextFormField(
-                    controller: context.read<SignUpCubit>().emailController,
+                    controller: signUpCubit.emailController,
                     hintText: AppStrings.email,
 
                     validator:
@@ -59,8 +60,7 @@ class _SignUpScreenBodyState extends State<SignUpScreenBody> {
                   SizedBoxManager.height(context, 16),
                   PasswordValidationWidget(
                     allConditionsMet: allConditionsMet,
-                    passwordController:
-                        context.read<SignUpCubit>().passwordController,
+                    passwordController: signUpCubit.passwordController,
                   ),
                   SizedBoxManager.height(context, 16),
                   TermsAndConditionsWidget(),

@@ -19,6 +19,7 @@ class CustomTextFormField extends StatefulWidget {
   final bool obscureText;
   final TextInputType? keyboardType;
   final void Function()? onTap;
+  final void Function(String?)? onSaved;
 
   const CustomTextFormField({
     this.validator,
@@ -35,6 +36,7 @@ class CustomTextFormField extends StatefulWidget {
     this.prefixIconPath,
     this.suffixIconWidget,
     super.key,
+    this.onSaved,
   });
 
   @override
@@ -55,6 +57,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       controller: widget.controller,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: widget.validator,
+      onSaved: widget.onSaved,
       style: StyleManager.textStyle16(
         context,
         FontWeight.w600,

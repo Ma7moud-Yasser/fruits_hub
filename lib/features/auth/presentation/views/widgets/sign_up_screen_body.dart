@@ -5,30 +5,67 @@ import 'package:fruits_hub/core/components/custom_text_form.dart';
 import 'package:fruits_hub/core/helper/app_strings.dart';
 import 'package:fruits_hub/core/styles/padding_manager.dart';
 import 'package:fruits_hub/core/styles/sized_box_manager.dart';
+import 'package:fruits_hub/core/utils/validation_manager.dart';
 import 'package:fruits_hub/features/auth/presentation/components/have_or_not_have_account_widget.dart';
+import 'package:fruits_hub/features/auth/presentation/views/widgets/PasswordValidationWidget.dart';
 import 'package:fruits_hub/features/auth/presentation/views/widgets/terms_condition_widget.dart';
 import 'package:fruits_hub/features/auth/signUpCubit/sin_up_cubit.dart';
 
-class SignUpScreenBody extends StatelessWidget {
+class SignUpScreenBody extends StatefulWidget {
   const SignUpScreenBody({super.key});
 
   @override
+  State<SignUpScreenBody> createState() => _SignUpScreenBodyState();
+}
+
+class _SignUpScreenBodyState extends State<SignUpScreenBody> {
+  final _formKey = GlobalKey<FormState>();
+  AutovalidateMode _autovalidateMode = AutovalidateMode.disabled;
+  String? email, password, name;
+
+  @override
   Widget build(BuildContext context) {
+    final checklist = ValidationManager.validatePasswordChecklist(
+      password ?? '',
+    );
+
+    bool allConditionsMet = checklist.values.every((isValid) => isValid);
+
     return Padding(
       padding: PaddingManager.symmetric(context: context),
       child: CustomScrollView(
         slivers: [
-          SliverList(
-            delegate: SliverChildListDelegate([
-              CustomTextFormField(hintText: AppStrings.fullName),
-              SizedBoxManager.height(context, 16),
-              CustomTextFormField(hintText: AppStrings.email),
-              SizedBoxManager.height(context, 16),
-              CustomTextFormField(hintText: AppStrings.password),
-              SizedBoxManager.height(context, 16),
-              TermsAndConditionsWidget(),
-              SizedBoxManager.height(context, 30),
-            ]),
+          SliverToBoxAdapter(
+            child: Form(
+              key: _formKey,
+              autovalidateMode: _autovalidateMode,
+              child: Column(
+                children: [
+                  CustomTextFormField(
+                    hintText: AppStrings.fullName,
+                    onSaved: (value) {
+                      name = value;
+                    },
+                    validator: (value) => ValidationManager.validateName(value),
+                  ),
+                  SizedBoxManager.height(context, 16),
+                  CustomTextFormField(
+                    hintText: AppStrings.email,
+                    onSaved: (value) {
+                      email = value;
+                    },
+                    validator:
+                        (value) => ValidationManager.validateEmail(value),
+                  ),
+                  SizedBoxManager.height(context, 16),
+                  PasswordValidationWidget(allConditionsMet: allConditionsMet),
+
+                  SizedBoxManager.height(context, 16),
+                  TermsAndConditionsWidget(),
+                  SizedBoxManager.height(context, 30),
+                ],
+              ),
+            ),
           ),
           SliverToBoxAdapter(
             child: BlocConsumer<SignUpCubit, SignUpState>(
@@ -36,7 +73,20 @@ class SignUpScreenBody extends StatelessWidget {
               builder: (context, state) {
                 return CustomButton(
                   isLoading: state is SignUpLoadingState,
-                  onPressed: () {},
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      _formKey.currentState!.save();
+                      context.read<SignUpCubit>().signUp(
+                        email!,
+                        password!,
+                        name!,
+                      );
+                    } else {
+                      setState(() {
+                        _autovalidateMode = AutovalidateMode.always;
+                      });
+                    }
+                  },
                   text: AppStrings.createAccount,
                 );
               },

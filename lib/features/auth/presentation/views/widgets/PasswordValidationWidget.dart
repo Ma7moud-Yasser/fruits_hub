@@ -62,7 +62,7 @@ class _PasswordValidationWidgetState extends State<PasswordValidationWidget> {
                 ),
               IconButton(
                 icon: Icon(
-                  widget.isPasswordVisible
+                  !widget.isPasswordVisible
                       ? Icons.visibility
                       : Icons.visibility_off,
                   color: AppColor.stoneLight,

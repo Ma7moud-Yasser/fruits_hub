@@ -14,6 +14,7 @@ class SignInCubit extends Cubit<SignInState> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  ValueNotifier<bool> isPasswordVisible = ValueNotifier<bool>(true);
 
   Future<void> signIn() async {
     emit(SignInLoadingState());

@@ -8,15 +8,11 @@ import 'package:fruits_hub/core/utils/validation_manager.dart';
 
 // ignore: must_be_immutable
 class PasswordValidationWidget extends StatefulWidget {
-  bool allConditionsMet;
+  bool allConditionsMet = false;
   final TextEditingController passwordController;
   bool isPasswordVisible = true;
 
-  PasswordValidationWidget({
-    super.key,
-    required this.allConditionsMet,
-    required this.passwordController,
-  });
+  PasswordValidationWidget({super.key, required this.passwordController});
 
   @override
   State<PasswordValidationWidget> createState() =>
@@ -42,7 +38,13 @@ class _PasswordValidationWidgetState extends State<PasswordValidationWidget> {
         CustomTextFormField(
           obscureText: widget.isPasswordVisible,
           keyboardType: TextInputType.visiblePassword,
-
+          validator: (value) {
+            if (value!.isEmpty || value.trim().isEmpty) {
+              return AppStrings.passwordIsRequired;
+            } else {
+              return null;
+            }
+          },
           hintText: AppStrings.password,
           controller: widget.passwordController,
           onChanged: (value) {

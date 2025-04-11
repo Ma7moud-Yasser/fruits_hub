@@ -105,6 +105,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                   child: SvgPicture.asset(widget.prefixIconPath!),
                 ),
       ),
+
       onTapOutside: (event) {
         FocusScope.of(context).unfocus();
       },

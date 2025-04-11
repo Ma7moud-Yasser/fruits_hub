@@ -26,6 +26,8 @@ class AppStrings {
   static const String signInWithFacebook = "تسجيل بواسطة فيسبوك";
   static const String iAgreeToThe = "من خلال إنشاء حساب ، فإنك توافق على ";
   static const String termsAndPrivacyOfService = "الشروط والأحكام الخاصة بنا";
+  static const String passwordValidationError = "كلمة المرور غير صحيحة";
+  static const String passwordIsRequired = "كلمة المرور مطلوبة";
   // static const String and = "و";
   // static const String privacyPolicy = "سياسة الخصوصية";
 }

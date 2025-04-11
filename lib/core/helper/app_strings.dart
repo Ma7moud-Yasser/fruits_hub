@@ -28,6 +28,8 @@ class AppStrings {
   static const String termsAndPrivacyOfService = "الشروط والأحكام الخاصة بنا";
   static const String passwordValidationError = "كلمة المرور غير صحيحة";
   static const String passwordIsRequired = "كلمة المرور مطلوبة";
+  static const String accountCreatedSuccessfully = "تم إنشاء الحساب بنجاح";
+
   // static const String and = "و";
   // static const String privacyPolicy = "سياسة الخصوصية";
 }

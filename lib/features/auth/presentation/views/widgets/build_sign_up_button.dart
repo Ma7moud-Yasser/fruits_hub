@@ -26,6 +26,11 @@ class _BuildSignUpButtonState extends State<BuildSignUpButton> {
             backgroundColor: AppColor.darkPrimary,
           );
         } else if (state is SignUpSuccessState) {
+          showErrorSnackBar(
+            context: context,
+            message: AppStrings.accountCreatedSuccessfully,
+            backgroundColor: AppColor.darkPrimary,
+          );
           Navigator.pop(context);
         }
       },

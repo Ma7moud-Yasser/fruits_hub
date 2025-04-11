@@ -26,7 +26,7 @@ class SocialAuthButton extends StatelessWidget {
             side: BorderSide(color: AppColor.darkSilverSky, width: 1),
           ),
         ),
-        onPressed: () {},
+        onPressed: onPressed,
         child: ListTile(
           visualDensity: VisualDensity(vertical: VisualDensity.minimumDensity),
           leading: SvgPicture.asset(iconPath, width: 30),

@@ -54,7 +54,7 @@ class AuthRepoImpl extends AuthRepo {
   Future<Either<Failure, UserEntity>> signInWithGoogle() async {
     try {
       var user = await firebaseAuthService.signInWithGoogle();
-      return right(UserModel.fromFirebase(user));
+      return right(UserModel.fromFirebase(user!));
     } catch (e) {
       log("Exception in AuthRepoImpl.signInWithGoogle: $e");
       return left(ServerFailure(message: "في مشكلة حصلت جرب كمان شويه"));

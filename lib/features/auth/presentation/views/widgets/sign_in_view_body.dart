@@ -28,12 +28,6 @@ class SignInViewBody extends StatelessWidget {
             message: state.message,
             backgroundColor: AppColor.darkPrimary,
           );
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(state.message),
-              backgroundColor: AppColor.darkPrimary,
-            ),
-          );
         } else if (state is SignInSuccessState) {
           // Navigator.pushNamedAndRemoveUntil(
           //   context,
@@ -129,7 +123,9 @@ class SignInViewBody extends StatelessWidget {
                   SocialAuthButton(
                     title: AppStrings.signInWithGoogle,
                     iconPath: IconsAssets.googleIcon,
-                    onPressed: () {},
+                    onPressed: () {
+                      signInCubit.signInWithGoogle();
+                    },
                   ),
                   SocialAuthButton(
                     title: AppStrings.signInWithApple,

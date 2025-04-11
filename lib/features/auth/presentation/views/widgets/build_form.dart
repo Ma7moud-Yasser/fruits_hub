@@ -5,7 +5,7 @@ import 'package:fruits_hub/core/styles/sized_box_manager.dart';
 import 'package:fruits_hub/core/utils/validation_manager.dart';
 import 'package:fruits_hub/features/auth/presentation/views/widgets/PasswordValidationWidget.dart';
 import 'package:fruits_hub/features/auth/presentation/views/widgets/terms_condition_widget.dart';
-import 'package:fruits_hub/features/auth/signUpCubit/sin_up_cubit.dart';
+import 'package:fruits_hub/features/auth/cubits/sign_up_cubit/sin_up_cubit.dart';
 
 Widget buildForm(
   BuildContext context,

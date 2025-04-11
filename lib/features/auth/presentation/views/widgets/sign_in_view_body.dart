@@ -69,7 +69,7 @@ class SignInViewBody extends StatelessWidget {
                           valueListenable: signInCubit.isPasswordVisible,
                           builder: (context, isVisible, child) {
                             return CustomTextFormField(
-                              obscureText: !isVisible,
+                              obscureText: isVisible,
                               controller: signInCubit.passwordController,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:fruits_hub/core/entities/user_entity.dart';
 import 'package:fruits_hub/core/errors/custom_exception.dart';
@@ -24,6 +26,7 @@ class AuthRepoImpl extends AuthRepo {
     } on CustomException catch (e) {
       return left(ServerFailure(message: e.message));
     } catch (e) {
+      log("Exception in AuthRepoImpl.createUser: $e");
       return left(ServerFailure(message: "في مشكلة حصلت جرب كمان شويه"));
     }
   }

@@ -12,7 +12,7 @@ class CustomException implements Exception {
 
 class NetworkException extends CustomException {
   NetworkException({
-    String message = "في مشكلة عندك في النت",
+    String message = "في مشكلة عندك في النت حاول تحلها و جرب تاني",
     StackTrace? stackTrace,
   }) : super(message: message, stackTrace: stackTrace);
 }

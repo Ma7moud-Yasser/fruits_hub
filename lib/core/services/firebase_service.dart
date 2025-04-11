@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fruits_hub/core/errors/custom_exception.dart';
 
@@ -11,6 +13,9 @@ class FirebaseAuthService {
           .createUserWithEmailAndPassword(email: email, password: password);
       return credential.user!;
     } on FirebaseAuthException catch (e) {
+      log(
+        "Exception in FirebaseAuth.createUserWithEmailAndPassword: ${e.code}",
+      );
       switch (e.code) {
         case 'invalid-email':
           throw ValidationException(message: 'البريد الإلكتروني غير صالح.');

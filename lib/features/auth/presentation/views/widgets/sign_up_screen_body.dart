@@ -22,7 +22,13 @@ class _SignUpScreenBodyState extends State<SignUpScreenBody> {
       padding: PaddingManager.symmetric(context: context),
       child: CustomScrollView(
         slivers: [
-          SliverToBoxAdapter(child: buildForm(context, signUpCubit)),
+          SliverToBoxAdapter(
+            child: buildForm(
+              context,
+              signUpCubit,
+              isTermsAccepted: signUpCubit.isTermsAccepted,
+            ),
+          ),
           SliverToBoxAdapter(child: BuildSignUpButton(cubit: signUpCubit)),
           SliverList(
             delegate: SliverChildListDelegate([

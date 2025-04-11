@@ -7,7 +7,11 @@ import 'package:fruits_hub/features/auth/presentation/views/widgets/PasswordVali
 import 'package:fruits_hub/features/auth/presentation/views/widgets/terms_condition_widget.dart';
 import 'package:fruits_hub/features/auth/signUpCubit/sin_up_cubit.dart';
 
-Widget buildForm(BuildContext context, SignUpCubit cubit) {
+Widget buildForm(
+  BuildContext context,
+  SignUpCubit cubit, {
+  required ValueNotifier<bool> isTermsAccepted,
+}) {
   AutovalidateMode _autovalidateMode = AutovalidateMode.disabled;
   return Form(
     key: cubit.formKey,
@@ -28,7 +32,7 @@ Widget buildForm(BuildContext context, SignUpCubit cubit) {
         SizedBoxManager.height(context, 16),
         PasswordValidationWidget(passwordController: cubit.passwordController),
         SizedBoxManager.height(context, 16),
-        const TermsAndConditionsWidget(),
+        TermsAndConditionsWidget(isTermsAccepted: isTermsAccepted),
         SizedBoxManager.height(context, 30),
       ],
     ),

@@ -39,8 +39,16 @@ class _BuildSignUpButtonState extends State<BuildSignUpButton> {
           isLoading: state is SignUpLoadingState,
           onPressed: () {
             if (widget.cubit.formKey.currentState!.validate()) {
-              widget.cubit.formKey.currentState!.save();
-              widget.cubit.signUp();
+              if (!widget.cubit.isTermsAccepted.value) {
+                showErrorSnackBar(
+                  context: context,
+                  message: AppStrings.pleaseAcceptTerms,
+                  backgroundColor: AppColor.darkPrimary,
+                );
+              } else {
+                widget.cubit.formKey.currentState!.save();
+                widget.cubit.signUp();
+              }
             }
           },
           text: AppStrings.createAccount,

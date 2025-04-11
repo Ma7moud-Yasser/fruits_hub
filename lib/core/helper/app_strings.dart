@@ -29,6 +29,7 @@ class AppStrings {
   static const String passwordValidationError = "كلمة المرور غير صحيحة";
   static const String passwordIsRequired = "كلمة المرور مطلوبة";
   static const String accountCreatedSuccessfully = "تم إنشاء الحساب بنجاح";
+  static const String pleaseAcceptTerms = "يرجى قبول الشروط والأحكام";
 
   // static const String and = "و";
   // static const String privacyPolicy = "سياسة الخصوصية";

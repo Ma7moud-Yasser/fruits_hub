@@ -17,6 +17,7 @@ class SignUpCubit extends Cubit<SignUpState> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final ValueNotifier<bool> isTermsAccepted = ValueNotifier<bool>(false);
 
   Future<void> signUp() async {
     emit(SignUpLoadingState());

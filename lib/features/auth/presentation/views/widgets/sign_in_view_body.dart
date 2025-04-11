@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_hub/core/components/custom_button.dart';
@@ -127,15 +129,19 @@ class SignInViewBody extends StatelessWidget {
                       signInCubit.signInWithGoogle();
                     },
                   ),
-                  SocialAuthButton(
-                    title: AppStrings.signInWithApple,
-                    iconPath: IconsAssets.appleIcon,
-                    onPressed: () {},
-                  ),
+                  Platform.isIOS
+                      ? SocialAuthButton(
+                        title: AppStrings.signInWithApple,
+                        iconPath: IconsAssets.appleIcon,
+                        onPressed: () {},
+                      )
+                      : SizedBox(),
                   SocialAuthButton(
                     title: AppStrings.signInWithFacebook,
                     iconPath: IconsAssets.facebookIcon,
-                    onPressed: () {},
+                    onPressed: () {
+                      signInCubit.signInWithFacebook();
+                    },
                   ),
                 ]),
               ),

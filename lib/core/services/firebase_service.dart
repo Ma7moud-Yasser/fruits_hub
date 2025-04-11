@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:fruits_hub/core/errors/custom_exception.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -148,5 +149,19 @@ class FirebaseAuthService {
       log('Google sign-in error: $e');
       return null;
     }
+  }
+
+  Future<User> signInWithFacebook() async {
+    // Trigger the sign-in flow
+    final LoginResult loginResult = await FacebookAuth.instance.login();
+
+    // Create a credential from the access token
+    final OAuthCredential facebookAuthCredential =
+        FacebookAuthProvider.credential(loginResult.accessToken!.tokenString);
+    final userCredential = await FirebaseAuth.instance.signInWithCredential(
+      facebookAuthCredential,
+    );
+    // Once signed in, return the UserCredential
+    return userCredential.user!;
   }
 }

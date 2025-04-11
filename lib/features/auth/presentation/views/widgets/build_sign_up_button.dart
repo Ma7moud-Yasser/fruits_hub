@@ -4,7 +4,7 @@ import 'package:fruits_hub/core/components/custom_button.dart';
 import 'package:fruits_hub/core/components/custom_snack_bar.dart';
 import 'package:fruits_hub/core/helper/app_strings.dart';
 import 'package:fruits_hub/core/styles/color_manager.dart';
-import 'package:fruits_hub/features/auth/signUpCubit/sin_up_cubit.dart';
+import 'package:fruits_hub/features/auth/cubits/sign_up_cubit/sin_up_cubit.dart';
 
 class BuildSignUpButton extends StatefulWidget {
   final SignUpCubit cubit;

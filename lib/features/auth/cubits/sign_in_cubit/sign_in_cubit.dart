@@ -14,4 +14,16 @@ class SignInCubit extends Cubit<SignInState> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+
+  Future<void> signIn() async {
+    emit(SignInLoadingState());
+    final result = await authRepo.signInWithEmailAndPassword(
+      email: emailController.text,
+      password: passwordController.text,
+    );
+    result.fold(
+      (failure) => emit(SignInErrorState(failure.message)),
+      (userEntity) => emit(SignInSuccessState(userEntity)),
+    );
+  }
 }

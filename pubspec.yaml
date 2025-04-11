@@ -42,6 +42,7 @@ dependencies:
   flutter_svg: ^2.0.17
   get_it: ^8.0.3
   google_fonts: ^6.2.1
+  google_sign_in: ^6.3.0
   shared_preferences: ^2.5.2
 
 dev_dependencies:

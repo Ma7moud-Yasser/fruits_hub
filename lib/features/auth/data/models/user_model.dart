@@ -9,12 +9,20 @@ class UserModel extends UserEntity {
     required super.userId,
   });
 
-  factory UserModel.fromJson(User user) {
+  factory UserModel.fromFirebase(User user) {
     return UserModel(
       name: user.displayName ?? 'No Name',
       email: user.email ?? 'No Email',
       password: 'No Password', // Password is not retrievable from Firebase
       userId: user.uid,
+    );
+  }
+  factory UserModel.fromJson(Map<String, dynamic> json) {
+    return UserModel(
+      name: json["name"] ?? 'No Name',
+      email: json["email"] ?? 'No Email',
+      password: 'No Password', // Password is not retrievable from Firebase
+      userId: json["userId"],
     );
   }
 }

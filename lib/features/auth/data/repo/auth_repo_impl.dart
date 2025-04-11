@@ -22,7 +22,7 @@ class AuthRepoImpl extends AuthRepo {
         email: email,
         password: password,
       );
-      return right(UserModel.fromJson(user));
+      return right(UserModel.fromFirebase(user));
     } on CustomException catch (e) {
       return left(ServerFailure(message: e.message));
     } catch (e) {
@@ -41,11 +41,22 @@ class AuthRepoImpl extends AuthRepo {
         email: email,
         password: password,
       );
-      return right(UserModel.fromJson(user));
+      return right(UserModel.fromFirebase(user));
     } on CustomException catch (e) {
       return left(ServerFailure(message: e.message));
     } catch (e) {
       log("Exception in AuthRepoImpl.signInWithEmailAndPassword: $e");
+      return left(ServerFailure(message: "في مشكلة حصلت جرب كمان شويه"));
+    }
+  }
+
+  @override
+  Future<Either<Failure, UserEntity>> signInWithGoogle() async {
+    try {
+      var user = await firebaseAuthService.signInWithGoogle();
+      return right(UserModel.fromFirebase(user));
+    } catch (e) {
+      log("Exception in AuthRepoImpl.signInWithGoogle: $e");
       return left(ServerFailure(message: "في مشكلة حصلت جرب كمان شويه"));
     }
   }

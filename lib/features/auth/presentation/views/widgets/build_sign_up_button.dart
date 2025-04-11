@@ -20,13 +20,13 @@ class _BuildSignUpButtonState extends State<BuildSignUpButton> {
     return BlocConsumer<SignUpCubit, SignUpState>(
       listener: (context, state) {
         if (state is SignUpErrorState) {
-          showErrorSnackBar(
+          customSnackBar(
             context: context,
             message: state.message,
             backgroundColor: AppColor.darkPrimary,
           );
         } else if (state is SignUpSuccessState) {
-          showErrorSnackBar(
+          customSnackBar(
             context: context,
             message: AppStrings.accountCreatedSuccessfully,
             backgroundColor: AppColor.darkPrimary,
@@ -40,7 +40,7 @@ class _BuildSignUpButtonState extends State<BuildSignUpButton> {
           onPressed: () {
             if (widget.cubit.formKey.currentState!.validate()) {
               if (!widget.cubit.isTermsAccepted.value) {
-                showErrorSnackBar(
+                customSnackBar(
                   context: context,
                   message: AppStrings.pleaseAcceptTerms,
                   backgroundColor: AppColor.darkPrimary,

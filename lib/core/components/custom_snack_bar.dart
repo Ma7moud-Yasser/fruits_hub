@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fruits_hub/core/styles/color_manager.dart';
 import 'package:fruits_hub/core/styles/styles_manager.dart';
 
-void showErrorSnackBar({
+void customSnackBar({
   required BuildContext context,
   required String message,
   required Color backgroundColor,

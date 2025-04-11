@@ -37,6 +37,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^9.1.0
+  flutter_facebook_auth: ^7.1.1
   flutter_localizations:
     sdk: flutter
   flutter_svg: ^2.0.17

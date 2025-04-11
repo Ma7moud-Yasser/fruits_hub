@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fruits_hub/core/components/custom_text_form.dart';
 import 'package:fruits_hub/core/helper/app_strings.dart';
 import 'package:fruits_hub/core/styles/color_manager.dart';
+import 'package:fruits_hub/core/styles/sized_box_manager.dart';
 import 'package:fruits_hub/core/styles/styles_manager.dart';
 import 'package:fruits_hub/core/utils/validation_manager.dart';
 
@@ -9,13 +10,12 @@ import 'package:fruits_hub/core/utils/validation_manager.dart';
 class PasswordValidationWidget extends StatefulWidget {
   bool allConditionsMet;
   final TextEditingController passwordController;
-  bool isPasswordVisible;
+  bool isPasswordVisible = true;
 
   PasswordValidationWidget({
     super.key,
     required this.allConditionsMet,
     required this.passwordController,
-    this.isPasswordVisible = true,
   });
 
   @override
@@ -44,23 +44,35 @@ class _PasswordValidationWidgetState extends State<PasswordValidationWidget> {
           keyboardType: TextInputType.visiblePassword,
 
           hintText: AppStrings.password,
-          controller: widget.passwordController, // تمرير الـ controller
+          controller: widget.passwordController,
           onChanged: (value) {
-            setState(() {
-              // هنا لا داعي لأن نحدث الـ password مباشرة لأنه يتم تحديثه عبر الـ controller
-            });
+            setState(() {});
           },
-          onSaved: (value) {
-            // يمكن حفظ الـ value هنا إذا لزم الأمر
-          },
-          suffixIconWidget:
-              widget.allConditionsMet
-                  ? Icon(
-                    Icons.check_circle,
-                    color: AppColor.lightPrimary,
-                    size: 24,
-                  )
-                  : null, // عرض الأيقونة فقط إذا كانت الشروط متحققة
+
+          suffixIconWidget: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              if (widget.allConditionsMet)
+                Icon(
+                  Icons.check_circle,
+                  color: AppColor.lightPrimary,
+                  size: 24,
+                ),
+              IconButton(
+                icon: Icon(
+                  widget.isPasswordVisible
+                      ? Icons.visibility
+                      : Icons.visibility_off,
+                  color: AppColor.stoneLight,
+                ),
+                onPressed: () {
+                  setState(() {
+                    widget.isPasswordVisible = !widget.isPasswordVisible;
+                  });
+                },
+              ),
+            ],
+          ),
         ),
         if (widget.passwordController.text.isNotEmpty &&
             !widget.allConditionsMet)
@@ -77,7 +89,7 @@ class _PasswordValidationWidgetState extends State<PasswordValidationWidget> {
                             : AppColor.important,
                     size: 18,
                   ),
-                  const SizedBox(width: 8),
+                  SizedBoxManager.width(context, 10),
                   Text(
                     entry.key,
                     style: StyleManager.textStyle14(

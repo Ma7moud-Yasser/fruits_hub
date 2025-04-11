@@ -27,7 +27,7 @@ class ValidationManager {
   }
 
   static String? validateName(String? name) {
-    if (name == null || name.trim().isEmpty) {
+    if (name == null || name.trim().isEmpty || name.trim().length < 3) {
       return 'الاسم مطلوب';
     }
     return null;

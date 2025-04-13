@@ -5,7 +5,7 @@ import 'package:fruits_hub/core/helper/app_strings.dart';
 import 'package:fruits_hub/core/services/get_it.dart';
 import 'package:fruits_hub/features/auth/domain/repo/auth_repo.dart';
 import 'package:fruits_hub/features/auth/presentation/views/widgets/sign_up_screen_body.dart';
-import 'package:fruits_hub/features/auth/cubits/sign_up_cubit/sin_up_cubit.dart';
+import 'package:fruits_hub/features/auth/presentation/cubits/sign_up_cubit/sin_up_cubit.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});

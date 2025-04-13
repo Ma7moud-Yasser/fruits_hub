@@ -4,7 +4,7 @@ import 'package:fruits_hub/core/styles/sized_box_manager.dart';
 import 'package:fruits_hub/features/auth/presentation/components/have_or_not_have_account_widget.dart';
 import 'package:fruits_hub/features/auth/presentation/views/widgets/build_form.dart';
 import 'package:fruits_hub/features/auth/presentation/views/widgets/build_sign_up_button.dart';
-import 'package:fruits_hub/features/auth/cubits/sign_up_cubit/sin_up_cubit.dart';
+import 'package:fruits_hub/features/auth/presentation/cubits/sign_up_cubit/sin_up_cubit.dart';
 
 class SignUpScreenBody extends StatefulWidget {
   const SignUpScreenBody({super.key});

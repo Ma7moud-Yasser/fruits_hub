@@ -13,7 +13,7 @@ import 'package:fruits_hub/core/styles/padding_manager.dart';
 import 'package:fruits_hub/core/styles/sized_box_manager.dart';
 import 'package:fruits_hub/core/styles/styles_manager.dart';
 import 'package:fruits_hub/core/utils/validation_manager.dart';
-import 'package:fruits_hub/features/auth/cubits/sign_in_cubit/sign_in_cubit.dart';
+import 'package:fruits_hub/features/auth/presentation/cubits/sign_in_cubit/sign_in_cubit.dart';
 import 'package:fruits_hub/features/auth/presentation/components/have_or_not_have_account_widget.dart';
 import 'package:fruits_hub/features/auth/presentation/components/or_divider.dart';
 import 'package:fruits_hub/features/auth/presentation/views/widgets/social_auth_button.dart';

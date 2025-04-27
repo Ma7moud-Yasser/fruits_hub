@@ -134,3 +134,6 @@ jobs:
           EOF
 
                     python upload_and_email.py
+          echo "✅ Email sent successfully to $EMAIL_RECEIVER"
+          echo "✅ APK uploaded successfully to Google Drive."
+          echo "🌐 Link : $file_link"

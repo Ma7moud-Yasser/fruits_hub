@@ -56,6 +56,15 @@ jobs:
       - name: Write Google credentials to file
         run: echo '${{ secrets.GOOGLE_DRIVE_CREDENTIALS }}' > credentials.json
 
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install required Python packages
+        run: |
+          pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
+
       - name: Upload APK to Google Drive & Send Email
         env:
           FOLDER_ID: ${{ steps.extract_folder.outputs.folder_id }}
@@ -64,8 +73,6 @@ jobs:
           EMAIL_RECEIVER: ${{ secrets.EMAIL_RECEIVER }}
           GITHUB_REF_NAME: ${{ github.ref_name }}
         run: |
-          pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
-
           cat > upload_and_email.py <<EOF
 import os
 import smtplib

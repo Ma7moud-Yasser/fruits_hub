@@ -21,7 +21,7 @@ class UserModel extends UserEntity {
     return UserModel(
       name: json["name"] ?? 'No Name',
       email: json["email"] ?? 'No Email',
-      password: 'No Password', // Password is not retrievable from Firebase
+      password: 'No Password',
       userId: json["userId"],
     );
   }

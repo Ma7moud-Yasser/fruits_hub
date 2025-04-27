@@ -65,6 +65,12 @@ jobs:
         run: |
           pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
 
+      - name: Verify Python installation
+        run: python --version
+
+      - name: Verify Pip installation
+        run: pip --version
+
       - name: Upload APK to Google Drive & Send Email
         env:
           FOLDER_ID: ${{ steps.extract_folder.outputs.folder_id }}
@@ -73,6 +79,7 @@ jobs:
           EMAIL_RECEIVER: ${{ secrets.EMAIL_RECEIVER }}
           GITHUB_REF_NAME: ${{ github.ref_name }}
         run: |
+          echo "Starting upload and email process"
           cat > upload_and_email.py <<EOF
 import os
 import smtplib

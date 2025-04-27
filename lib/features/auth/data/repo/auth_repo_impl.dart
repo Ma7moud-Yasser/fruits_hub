@@ -12,11 +12,11 @@ import 'package:fruits_hub/features/auth/domain/repo/auth_repo.dart';
 
 class AuthRepoImpl extends AuthRepo {
   FirebaseAuthService firebaseAuthService;
-  DataBaseServices dataBaseServices;
+  // DataBaseServices dataBaseServices;
 
   AuthRepoImpl({
     required this.firebaseAuthService,
-    required this.dataBaseServices,
+    // required this.dataBaseServices,
   });
   @override
   Future<Either<Failure, UserEntity>> createUser({
@@ -83,9 +83,9 @@ class AuthRepoImpl extends AuthRepo {
 
   @override
   Future addUserData({required UserEntity user}) async {
-    await dataBaseServices.addData(
-      path: EndPoint.addUserData,
-      data: user.toMap(),
-    );
+    // await dataBaseServices.addData(
+    //   path: EndPoint.addUserData,
+    //   data: user.toMap(),
+    // );
   }
 }

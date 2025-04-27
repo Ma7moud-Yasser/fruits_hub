@@ -13,9 +13,9 @@ import 'generated/l10n.dart';
 
 void main() async {
   Bloc.observer = MyBlocObserver();
-  setupGetIt();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  setupGetIt();
   await SharedPrefs.init();
   runApp(const FruitHub());
 }

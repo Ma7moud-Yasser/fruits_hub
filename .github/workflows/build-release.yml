@@ -3,12 +3,13 @@ name: Build and Upload Release APK
 on:
   push:
     branches:
-      - "*"
+      - "**"
 
 jobs:
   build_release:
     if: contains(github.event.head_commit.message, 'build release')
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -16,15 +17,15 @@ jobs:
       - name: Set up Java
         uses: actions/setup-java@v3
         with:
-          distribution: 'temurin'
-          java-version: '17'
-          cache: 'gradle'
+          distribution: "temurin"
+          java-version: "17"
+          cache: "gradle"
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.27.0'
-          channel: 'stable'
+          flutter-version: "3.27.0"
+          channel: "stable"
           cache: true
 
       - name: Install dependencies
@@ -56,20 +57,20 @@ jobs:
       - name: Write Google credentials to file
         run: echo '${{ secrets.GOOGLE_DRIVE_CREDENTIALS }}' > credentials.json
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
+      # - name: Set up Python
+      #   uses: actions/setup-python@v4
+      #   with:
+      #     python-version: '3.x'
 
-      - name: Install required Python packages
-        run: |
-          pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
+      # - name: Install required Python packages
+      #   run: |
+      #     pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
 
-      - name: Verify Python installation
-        run: python --version
+      # - name: Verify Python installation
+      #   run: python --version
 
-      - name: Verify Pip installation
-        run: pip --version
+      # - name: Verify Pip installation
+      #   run: pip --version
 
       - name: Upload APK to Google Drive & Send Email
         env:
@@ -79,48 +80,57 @@ jobs:
           EMAIL_RECEIVER: ${{ secrets.EMAIL_RECEIVER }}
           GITHUB_REF_NAME: ${{ github.ref_name }}
         run: |
-          echo "Starting upload and email process"
+          pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
+
           cat > upload_and_email.py <<EOF
-import os
-import smtplib
-from email.mime.text import MIMEText
-from google.oauth2 import service_account
-from googleapiclient.discovery import build
-from googleapiclient.http import MediaFileUpload
+          import os
+          import smtplib
+          from email.mime.text import MIMEText
+          from google.oauth2 import service_account
+          from googleapiclient.discovery import build
+          from googleapiclient.http import MediaFileUpload
 
-# Google Drive Upload
-FOLDER_ID = os.environ['FOLDER_ID']
-SCOPES = ['https://www.googleapis.com/auth/drive.file']
-SERVICE_ACCOUNT_FILE = 'credentials.json'
+          # ==== Google Drive Upload =====
+          FOLDER_ID = os.environ['FOLDER_ID']
+          SCOPES = ['https://www.googleapis.com/auth/drive.file']
+          SERVICE_ACCOUNT_FILE = 'credentials.json'
 
-credentials = service_account.Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE, scopes=SCOPES)
-service = build('drive', 'v3', credentials=credentials)
+          credentials = service_account.Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE, scopes=SCOPES)
 
-ref_name = os.environ.get('GITHUB_REF_NAME', 'unknown-branch')
-file_name = f"app-release-{ref_name}.apk"
-file_metadata = {
-    'name': file_name,
-    'parents': [FOLDER_ID]
-}
-media = MediaFileUpload('build/app/outputs/flutter-apk/app-release.apk', mimetype='application/vnd.android.package-archive')
-service.files().create(body=file_metadata, media_body=media, fields='id').execute()
+          service = build('drive', 'v3', credentials=credentials)
 
-# Send Email
-email_user = os.environ['EMAIL_USER']
-email_pass = os.environ['EMAIL_PASS']
-email_receiver = os.environ['EMAIL_RECEIVER']
+          ref_name = os.environ.get('GITHUB_REF_NAME', 'unknown-branch')
+          file_name = f"app-release-{ref_name}.apk"
+          file_metadata = {
+              'name': file_name,
+              'parents': [FOLDER_ID]
+          }
+          media = MediaFileUpload('build/app/outputs/flutter-apk/app-release.apk', mimetype='application/vnd.android.package-archive')
+          file = service.files().create(
+              body=file_metadata,
+              media_body=media,
+              fields='id,webViewLink'
+          ).execute()
+          file_link = file.get('webViewLink')
+          print("✅ File uploaded successfully to Google Drive.")
+          print("🌐 Link : ",file_link)
 
-subject = f"APK Uploaded: {ref_name}"
-body = "Your APK has been successfully uploaded to Google Drive."
+          # Send Email
+          email_user = os.environ['EMAIL_USER']
+          email_pass = os.environ['EMAIL_PASS']
+          email_receiver = os.environ['EMAIL_RECEIVER']
 
-msg = MIMEText(body)
-msg['Subject'] = subject
-msg['From'] = email_user
-msg['To'] = email_receiver
+          subject = f"APK Uploaded: {ref_name}"
+          body = "Your APK has been successfully uploaded to Google Drive."
 
-with smtplib.SMTP_SSL('smtp.gmail.com', 465) as server:
-    server.login(email_user, email_pass)
-    server.sendmail(email_user, email_receiver.split(','), msg.as_string())
-EOF
+          msg = MIMEText(body)
+          msg['Subject'] = subject
+          msg['From'] = email_user
+          msg['To'] = email_receiver
 
-          python upload_and_email.py
+          with smtplib.SMTP_SSL('smtp.gmail.com', 465) as server:
+              server.login(email_user, email_pass)
+              server.sendmail(email_user, email_receiver.split(','), msg.as_string())
+          EOF
+
+                    python upload_and_email.py

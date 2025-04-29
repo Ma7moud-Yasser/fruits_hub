@@ -60,6 +60,10 @@ class FirebaseAuthService {
     }
   }
 
+  Future<void> deleteUser() async {
+    FirebaseAuth.instance.currentUser!.delete();
+  }
+
   Future<User> signInWithEmailAndPassword({
     required String email,
     required String password,

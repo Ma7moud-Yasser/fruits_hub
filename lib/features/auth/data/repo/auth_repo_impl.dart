@@ -56,7 +56,9 @@ class AuthRepoImpl extends AuthRepo {
         email: email,
         password: password,
       );
-      return right(UserModel.fromFirebase(user));
+      UserEntity userEntity = await getUserData(userId: user.uid);
+      print("userData: ${userEntity.name}");
+      return right(userEntity);
     } on CustomException catch (e) {
       return left(ServerFailure(message: e.message));
     } catch (e) {
@@ -97,10 +99,23 @@ class AuthRepoImpl extends AuthRepo {
 
   @override
   Future addUserData({required UserEntity user}) async {
-    await dataBaseServices.addData(path: EndPoint.users, data: user.toMap());
+    await dataBaseServices.addData(
+      path: EndPoint.addUserData,
+      data: user.toMap(),
+      documentId: user.userId,
+    );
   }
 
   Future<void> deleteUser(User? user) async {
     if (user != null) await firebaseAuthService.deleteUser();
+  }
+
+  @override
+  Future<UserEntity> getUserData({required String userId}) async {
+    var userData = await dataBaseServices.getData(
+      path: EndPoint.getUserData,
+      documentId: userId,
+    );
+    return UserModel.fromJson(userData);
   }
 }

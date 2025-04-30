@@ -1,10 +1,12 @@
-import 'package:fruits_hub/core/entities/user_entity.dart';
-
 abstract class DataBaseServices {
   Future<void> addData({
     required String path,
+    String? documentId,
     required Map<String, dynamic> data,
   });
 
-  Future<UserEntity> getUserData({required String path, required String uid});
+  Future<Map<String, dynamic>> getData({
+    required String path,
+    required String documentId,
+  });
 }

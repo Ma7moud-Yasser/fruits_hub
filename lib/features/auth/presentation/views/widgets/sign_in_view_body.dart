@@ -81,7 +81,7 @@ class SignInViewBody extends StatelessWidget {
                                       !signInCubit.isPasswordVisible.value;
                                 },
                                 icon: Icon(
-                                  isVisible
+                                  !isVisible
                                       ? Icons.visibility
                                       : Icons.visibility_off,
                                   color: AppColor.stoneLight,

@@ -97,10 +97,7 @@ class AuthRepoImpl extends AuthRepo {
 
   @override
   Future addUserData({required UserEntity user}) async {
-    await dataBaseServices.addData(
-      path: EndPoint.addUserData,
-      data: user.toMap(),
-    );
+    await dataBaseServices.addData(path: EndPoint.users, data: user.toMap());
   }
 
   Future<void> deleteUser(User? user) async {

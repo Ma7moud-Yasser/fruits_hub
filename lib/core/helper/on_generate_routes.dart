@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fruits_hub/features/auth/presentation/views/sign_in_screen.dart';
 import 'package:fruits_hub/features/auth/presentation/views/sign_up_screen.dart';
+import 'package:fruits_hub/features/home/presentation/views/home_screen.dart';
 import 'package:fruits_hub/features/on_boarding/presintaion/views/on_boarding_screen.dart';
 import 'package:fruits_hub/features/splash/presintation/views/splash_screen.dart';
 
@@ -9,8 +10,7 @@ class Routes {
   static const String onBoardingScreen = '/onBoardingScreen';
   static const String signInScreen = '/signInScreen';
   static const String signUpScreen = '/signUpScreen';
-
-  static const String home = '/';
+  static const String homeScreen = '/homeScreen';
 }
 
 class OnGeneraRouteGenerator {
@@ -24,6 +24,8 @@ class OnGeneraRouteGenerator {
         return MaterialPageRoute(builder: (_) => const SignInScreen());
       case Routes.signUpScreen:
         return MaterialPageRoute(builder: (_) => const SignUpScreen());
+      case Routes.homeScreen:
+        return MaterialPageRoute(builder: (_) => const HomeScreen());
       default:
         return MaterialPageRoute(builder: (_) => const SplashScreen());
     }

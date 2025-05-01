@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fruits_hub/core/entities/user_entity.dart';
 import 'package:fruits_hub/core/errors/custom_exception.dart';
 import 'package:fruits_hub/core/errors/failure.dart';
-import 'package:fruits_hub/core/services/dataBase/database_sevices.dart';
+import 'package:fruits_hub/core/services/dataBase/database_services.dart';
 import 'package:fruits_hub/core/services/end_point.dart';
 import 'package:fruits_hub/core/services/fireBase/firebase_auth_service.dart';
 import 'package:fruits_hub/features/auth/data/models/user_model.dart';

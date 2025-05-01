@@ -1,4 +1,4 @@
-import 'package:fruits_hub/core/services/dataBase/database_sevices.dart';
+import 'package:fruits_hub/core/services/dataBase/database_services.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FireStoreService implements DataBaseServices {

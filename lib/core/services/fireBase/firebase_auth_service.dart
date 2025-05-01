@@ -87,11 +87,13 @@ class FirebaseAuthService {
           throw AuthException(message: 'لا يوجد حساب مرتبط بهذا البريد.');
 
         case 'wrong-password':
-          throw AuthException(message: 'كلمة المرور غير صحيحة.');
+          throw AuthException(
+            message: "البريد الالكتروني او كلمه المرور غير صحيحه",
+          );
 
         case 'email-already-in-use':
-          throw ValidationException(
-            message: 'البريد الإلكتروني مستخدم بالفعل.',
+          throw AuthException(
+            message: "البريد الالكتروني او كلمه المرور غير صحيحه",
           );
 
         case 'operation-not-allowed':
@@ -143,11 +145,9 @@ class FirebaseAuthService {
         idToken: googleAuth.idToken,
       );
 
-      final userCredential = await FirebaseAuth.instance.signInWithCredential(
+      return (await FirebaseAuth.instance.signInWithCredential(
         credential,
-      );
-
-      return userCredential.user;
+      )).user!;
     } catch (e) {
       // سجل الخطأ أو أظهر رسالة للمستخدم
       log('Google sign-in error: $e');

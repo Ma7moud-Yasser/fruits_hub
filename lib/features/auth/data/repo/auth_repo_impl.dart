@@ -72,19 +72,27 @@ class AuthRepoImpl extends AuthRepo {
     User? user;
     try {
       user = await firebaseAuthService.signInWithGoogle();
-      var userEntity = UserModel.fromFirebase(user!);
-      var checkUserExist = await dataBaseServices.checkIfDocumentExists(
-        path: EndPoint.getUserData,
-        documentId: userEntity.userId,
-      );
-      if (checkUserExist) {
-        await getUserData(userId: userEntity.userId);
-        log("Get User Data: ${userEntity.name}");
+      if (user != null) {
+        final userEntity = UserModel.fromFirebase(user);
+        final userExists = await dataBaseServices.checkIfDocumentExists(
+          path: EndPoint.getUserData,
+          documentId: userEntity.userId,
+        );
+        log("user UID (Google): ${userEntity.userId}");
+        if (userExists) {
+          final existingUser = await getUserData(userId: userEntity.userId);
+          log("User exists, fetching data (Google): ${existingUser.userId}");
+          return right(existingUser);
+        } else {
+          await addUserData(user: userEntity);
+          log("New user created (Google): ${userEntity.userId}");
+          return right(userEntity);
+        }
       } else {
-        await addUserData(user: userEntity);
-        log("Add User Data: ${userEntity.name}");
+        return left(
+          ServerFailure(message: "حدث خطأ أثناء تسجيل الدخول باستخدام جوجل"),
+        );
       }
-      return right(UserModel.fromFirebase(user));
     } catch (e) {
       await deleteUser(user);
       log("Exception in AuthRepoImpl.signInWithGoogle: $e");
@@ -95,25 +103,34 @@ class AuthRepoImpl extends AuthRepo {
   @override
   Future<Either<Failure, UserEntity>> signInWithFacebook() async {
     User? user;
+
     try {
       user = await firebaseAuthService.signInWithFacebook();
+
       var userEntity = UserModel.fromFirebase(user);
+
       var checkUserExist = await dataBaseServices.checkIfDocumentExists(
         path: EndPoint.getUserData,
+
         documentId: userEntity.userId,
       );
+
       if (checkUserExist) {
         await getUserData(userId: userEntity.userId);
+
         log("Get User Data: ${userEntity.name}");
       } else {
         await addUserData(user: userEntity);
+
         log("Add User Data: ${userEntity.name}");
       }
 
       return right(UserModel.fromFirebase(user));
     } catch (e) {
       await deleteUser(user);
+
       log("Exception in AuthRepoImpl.signInWithFacebook: $e");
+
       return left(ServerFailure(message: "في مشكلة حصلت جرب كمان شويه"));
     }
   }

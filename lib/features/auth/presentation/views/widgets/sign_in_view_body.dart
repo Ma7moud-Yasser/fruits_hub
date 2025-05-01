@@ -31,11 +31,11 @@ class SignInViewBody extends StatelessWidget {
             backgroundColor: AppColor.darkPrimary,
           );
         } else if (state is SignInSuccessState) {
-          // Navigator.pushNamedAndRemoveUntil(
-          //   context,
-          //   Routes.homeScreen,
-          //   (route) => false,
-          // );
+          Navigator.pushNamedAndRemoveUntil(
+            context,
+            Routes.homeScreen,
+            (route) => false,
+          );
         }
       },
       builder: (context, state) {

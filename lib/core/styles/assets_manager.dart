@@ -30,4 +30,6 @@ class IconsAssets {
 
   /// Home Screen
   static const String notification = "$iconPath/notification.svg";
+  static const String search = "$iconPath/search.svg";
+  static const String filter = "$iconPath/filter.svg";
 }

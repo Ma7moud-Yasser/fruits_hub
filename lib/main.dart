@@ -12,8 +12,8 @@ import 'firebase_options.dart';
 import 'generated/l10n.dart';
 
 void main() async {
-  Bloc.observer = MyBlocObserver();
   WidgetsFlutterBinding.ensureInitialized();
+  Bloc.observer = MyBlocObserver();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   setupGetIt();
   await SharedPrefs.init();

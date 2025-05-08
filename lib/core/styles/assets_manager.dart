@@ -2,11 +2,11 @@ const String imagePath = "assets/images";
 const String iconPath = "assets/icons";
 
 class ImagesAssets {
-  static const String ocr = "$imagePath/ocr.png";
-  static const String crush = "$imagePath/crush.jpg";
+  /// Splash Screen
   static const String onboarding1 = "$imagePath/onBoarding1.png";
   static const String onboarding2 = "$imagePath/onBoarding2.png";
   static const String onboarding3 = "$imagePath/onBoarding3.png";
+  static const String image_profile = "$imagePath/2.png";
 }
 
 class IconsAssets {
@@ -27,4 +27,7 @@ class IconsAssets {
   static const String facebookIcon = "$iconPath/facebook_icon.svg";
   static const String checkBoxEmpty = "$iconPath/check_box_empty.svg";
   static const String checkBoxFill = "$iconPath/check_box_fill.svg";
+
+  /// Home Screen
+  static const String notification = "$iconPath/notification.svg";
 }

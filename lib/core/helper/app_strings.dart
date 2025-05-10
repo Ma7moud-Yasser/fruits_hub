@@ -36,6 +36,8 @@ class AppStrings {
   static const String shoppingNow = "تسوق الآن";
   static const String bestSeller = "الأكثر مبيعًا";
   static const String more = "المزيد";
+  static const String lE = "جنيه";
+  static const String measurement = " / الكيلو";
 
   /// this item for test only
   static const String watermelon = "بطيخ";

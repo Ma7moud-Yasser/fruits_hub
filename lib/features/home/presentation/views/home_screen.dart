@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fruits_hub/core/components/category_slider%20_bar.dart';
+import 'package:fruits_hub/core/components/ftuits_item.dart';
 import 'package:fruits_hub/core/helper/app_strings.dart';
 import 'package:fruits_hub/core/styles/sized_box_manager.dart';
 import 'package:fruits_hub/features/home/presentation/components/custom_home_app_bar.dart';
@@ -26,6 +27,7 @@ class HomeScreen extends StatelessWidget {
                     title: AppStrings.bestSeller,
                     onPressed: () {},
                   ),
+                  FruitItem(),
                 ],
               ),
             ),

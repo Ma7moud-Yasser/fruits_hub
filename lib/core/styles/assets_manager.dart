@@ -7,8 +7,10 @@ class ImagesAssets {
   static const String onboarding2 = "$imagePath/onBoarding2.png";
   static const String onboarding3 = "$imagePath/onBoarding3.png";
 
-  static const String featuredItem1 = "$imagePath/featured_item_1.png";
+  /// Featured Items
+  static const String featuredItem1 = "$imagePath/featured_item_1.jpeg";
   static const String featuredItem2 = "$imagePath/featured_item_2.jpeg";
+  static const String featuredItem3 = "$imagePath/featured_item_3.jpeg";
 }
 
 class IconsAssets {

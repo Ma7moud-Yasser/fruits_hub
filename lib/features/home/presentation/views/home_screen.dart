@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:fruits_hub/core/helper/app_strings.dart';
+import 'package:fruits_hub/core/styles/assets_manager.dart';
 import 'package:fruits_hub/core/styles/sized_box_manager.dart';
 import 'package:fruits_hub/features/home/presentation/components/custom_home_app_bar.dart';
 import 'package:fruits_hub/core/components/custom_search_bar.dart';
@@ -16,8 +18,14 @@ class HomeScreen extends StatelessWidget {
             SliverToBoxAdapter(child: CustomHomeAppBar()),
             SliverToBoxAdapter(child: SizedBoxManager.height(context, 16)),
             SliverToBoxAdapter(child: CustomSearchBar()),
-            SliverToBoxAdapter(child: SizedBoxManager.height(context, 16)),
-            SliverToBoxAdapter(child: FeaturedItem()),
+            SliverToBoxAdapter(
+              child: FeaturedItem(
+                imagePath: ImagesAssets.featuredItem1,
+                title: AppStrings.eidOffers,
+                subTitle: AppStrings.offer25,
+                buttonPressed: () {},
+              ),
+            ),
           ],
         ),
       ),

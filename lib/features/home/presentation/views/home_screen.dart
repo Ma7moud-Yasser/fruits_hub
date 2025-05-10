@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:fruits_hub/core/components/category_slider%20_bar.dart';
+import 'package:fruits_hub/core/helper/app_strings.dart';
 import 'package:fruits_hub/core/styles/sized_box_manager.dart';
 import 'package:fruits_hub/features/home/presentation/components/custom_home_app_bar.dart';
 import 'package:fruits_hub/core/components/custom_search_bar.dart';
@@ -20,9 +22,10 @@ class HomeScreen extends StatelessWidget {
                   SizedBoxManager.height(context, 16),
                   CustomSearchBar(),
                   FeaturedList(),
-                  Row(children: [
-                    
-                  ],),
+                  CategorySliderBar(
+                    title: AppStrings.bestSeller,
+                    onPressed: () {},
+                  ),
                 ],
               ),
             ),

@@ -34,4 +34,6 @@ class AppStrings {
   static const String eidOffers = "عروض العيد";
   static const String offer25 = "خضم 25%";
   static const String shoppingNow = "تسوق الآن";
+  static const String bestSeller = "الأكثر مبيعًا";
+  static const String more = "المزيد";
 }

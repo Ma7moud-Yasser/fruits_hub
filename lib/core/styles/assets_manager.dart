@@ -11,6 +11,12 @@ class ImagesAssets {
   static const String featuredItem1 = "$imagePath/featured_item_1.jpeg";
   static const String featuredItem2 = "$imagePath/featured_item_2.jpeg";
   static const String featuredItem3 = "$imagePath/featured_item_3.jpeg";
+
+  /// Best Seller Items
+  static const String bestSeller1 = "$imagePath/best_seller1.svg";
+  static const String bestSeller2 = "$imagePath/best_seller2.svg";
+  static const String bestSeller3 = "$imagePath/best_seller3.svg";
+  static const String bestSeller4 = "$imagePath/best_seller4.svg";
 }
 
 class IconsAssets {

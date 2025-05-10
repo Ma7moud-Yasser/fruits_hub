@@ -3,6 +3,7 @@ import 'package:fruits_hub/core/helper/app_strings.dart';
 import 'package:fruits_hub/core/styles/assets_manager.dart';
 import 'package:fruits_hub/core/styles/border_radius_manager.dart';
 import 'package:fruits_hub/core/styles/color_manager.dart';
+import 'package:fruits_hub/core/styles/padding_manager.dart';
 import 'package:fruits_hub/core/styles/sized_box_manager.dart';
 import 'package:fruits_hub/core/styles/styles_manager.dart';
 
@@ -12,10 +13,8 @@ class FruitItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 120,
-      height: 250,
       decoration: BoxDecoration(
-        color: AppColor.important,
+        color: AppColor.darkSilverSky,
         borderRadius: BorderRadiusManager.small(context),
       ),
       child: Stack(
@@ -31,11 +30,15 @@ class FruitItem extends StatelessWidget {
           Positioned.fill(
             child: Column(
               children: [
-                SizedBoxManager.height(context, 20),
-                Image.asset(ImagesAssets.bestSeller2),
+                SizedBoxManager.height(context, 50),
+                Image.asset(ImagesAssets.bestSeller1),
                 SizedBoxManager.height(context, 24),
                 ListTile(
-                  contentPadding: EdgeInsets.zero,
+                  contentPadding: PaddingManager.symmetric(
+                    context: context,
+                    vertical: 0,
+                    horizontal: 20,
+                  ),
                   title: Text(
                     AppStrings.watermelon,
                     style: StyleManager.textStyle14(
@@ -44,8 +47,6 @@ class FruitItem extends StatelessWidget {
                     ).copyWith(color: AppColor.back),
                   ),
                   subtitle: Text.rich(
-                    softWrap: true,
-                    overflow: TextOverflow.clip,
                     TextSpan(
                       text: "20",
                       style: StyleManager.textStyle14(

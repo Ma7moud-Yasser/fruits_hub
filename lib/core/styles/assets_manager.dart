@@ -6,7 +6,9 @@ class ImagesAssets {
   static const String onboarding1 = "$imagePath/onBoarding1.png";
   static const String onboarding2 = "$imagePath/onBoarding2.png";
   static const String onboarding3 = "$imagePath/onBoarding3.png";
-  static const String image_profile = "$imagePath/2.png";
+
+  static const String featuredItem1 = "$imagePath/featured_item_1.png";
+  static const String featuredItem2 = "$imagePath/featured_item_2.jpeg";
 }
 
 class IconsAssets {
@@ -32,4 +34,6 @@ class IconsAssets {
   static const String notification = "$iconPath/notification.svg";
   static const String search = "$iconPath/search.svg";
   static const String filter = "$iconPath/filter.svg";
+  static const String featuredItemBackground =
+      "$iconPath/featured_item_background.svg";
 }

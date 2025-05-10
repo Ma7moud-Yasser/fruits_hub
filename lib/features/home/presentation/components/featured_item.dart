@@ -28,7 +28,7 @@ class FeaturedItem extends StatelessWidget {
     return Padding(
       padding: PaddingManager.symmetric(context: context),
       child: SizedBox(
-        width: itemWidth,
+        width: itemWidth - 32,
 
         child: AspectRatio(
           aspectRatio: 342 / 158,

@@ -31,6 +31,7 @@ class AppStrings {
   static const String accountCreatedSuccessfully = "تم إنشاء الحساب بنجاح";
   static const String pleaseAcceptTerms = "يرجى قبول الشروط والأحكام";
   static const String searchFor = "ابحث عن...";
-  // static const String and = "و";
-  // static const String privacyPolicy = "سياسة الخصوصية";
+  static const String eidOffers = "عروض العيد";
+  static const String offer25 = "خضم 25%";
+  static const String shoppingNow = "تسوق الآن";
 }

@@ -36,4 +36,10 @@ class AppStrings {
   static const String shoppingNow = "تسوق الآن";
   static const String bestSeller = "الأكثر مبيعًا";
   static const String more = "المزيد";
+
+  /// this item for test only
+  static const String watermelon = "بطيخ";
+  static const String strawberry = "فراولة";
+  static const String pineapple = "أناناس";
+  static const String kiwi = "كيوي";
 }

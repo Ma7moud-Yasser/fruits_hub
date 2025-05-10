@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:fruits_hub/core/helper/app_strings.dart';
-import 'package:fruits_hub/core/styles/assets_manager.dart';
 import 'package:fruits_hub/core/styles/sized_box_manager.dart';
 import 'package:fruits_hub/features/home/presentation/components/custom_home_app_bar.dart';
 import 'package:fruits_hub/core/components/custom_search_bar.dart';
-import 'package:fruits_hub/features/home/presentation/components/featured_item.dart';
+import 'package:fruits_hub/features/home/presentation/components/featured_list.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -15,15 +13,17 @@ class HomeScreen extends StatelessWidget {
       body: SafeArea(
         child: CustomScrollView(
           slivers: [
-            SliverToBoxAdapter(child: CustomHomeAppBar()),
-            SliverToBoxAdapter(child: SizedBoxManager.height(context, 16)),
-            SliverToBoxAdapter(child: CustomSearchBar()),
             SliverToBoxAdapter(
-              child: FeaturedItem(
-                imagePath: ImagesAssets.featuredItem1,
-                title: AppStrings.eidOffers,
-                subTitle: AppStrings.offer25,
-                buttonPressed: () {},
+              child: Column(
+                children: [
+                  CustomHomeAppBar(),
+                  SizedBoxManager.height(context, 16),
+                  CustomSearchBar(),
+                  FeaturedList(),
+                  Row(children: [
+                    
+                  ],),
+                ],
               ),
             ),
           ],

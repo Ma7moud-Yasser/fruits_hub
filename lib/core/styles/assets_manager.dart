@@ -13,10 +13,10 @@ class ImagesAssets {
   static const String featuredItem3 = "$imagePath/featured_item_3.jpeg";
 
   /// Best Seller Items
-  static const String bestSeller1 = "$imagePath/best_seller1.svg";
-  static const String bestSeller2 = "$imagePath/best_seller2.svg";
-  static const String bestSeller3 = "$imagePath/best_seller3.svg";
-  static const String bestSeller4 = "$imagePath/best_seller4.svg";
+  static const String bestSeller1 = "$imagePath/best_seller1.png";
+  static const String bestSeller2 = "$imagePath/best_seller2.png";
+  static const String bestSeller3 = "$imagePath/best_seller3.png";
+  static const String bestSeller4 = "$imagePath/best_seller4.png";
 }
 
 class IconsAssets {
